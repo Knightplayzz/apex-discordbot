@@ -1,0 +1,23 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "Test V13",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
+  },
+  "author": "Philippe Smeets",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/rest": "^1.1.0",
+    "canvas": "^2.9.3",
+    "discord-api-types": "^0.37.5",
+    "discord-button-pages": "^1.1.9",
+    "discord-buttons": "^4.0.0",
+    "discord-rpc": "^4.0.1",
+    "discord.js": "^13.10.3",
+    "firebase": "^9.9.4",
+    "ms": "^2.1.3"
+  }
+}
