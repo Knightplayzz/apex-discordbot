@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, MessageAttachment } = require("discord.js");
 const fetch = require('node-fetch')
 const discord = require("discord.js")
-const botConfig = require('../botConfig.json')
 
 module.exports = {
     data: new SlashCommandBuilder()
