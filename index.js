@@ -1,6 +1,5 @@
 const { Client, Intents, Collection, MessageEmbed, MessageActionRow, MessageButton, MessageAttachment } = require("discord.js");
 const fetch = require('node-fetch')
-const botConfig = require("./botConfig");
 const discord = require("discord.js")
 const fs = require("fs");
 const client = new Client({
@@ -34,7 +33,7 @@ for (const fileSlash of commandSlashFiles) {
 //presence
 client.once("ready", async message => {
     console.log(`${client.user.username} is online.`);
-    var url = `https://api.mozambiquehe.re/maprotation?auth=${botConfig.auth}`
+    var url = `https://api.mozambiquehe.re/maprotation?auth=${process.env.auth}`
     setInterval(function () {
         try{
         fetch(url)
@@ -81,7 +80,7 @@ client.on("messageCreate", message => {
 
 // slash commands
 
-const rest = new REST({ version: '10' }).setToken(botConfig.token);
+const rest = new REST({ version: '10' }).setToken(process.env.token);
 
 // rest.delete(Routes.applicationGuildCommand(botConfig.clientID, botConfig.serverID, '1018120098092953642'))
 //     .then(() => console.log('Successfully deleted guild command'))
@@ -96,7 +95,7 @@ const rest = new REST({ version: '10' }).setToken(botConfig.token);
         console.log('Started refreshing application (/) commands.');
 
         await rest.put(
-            Routes.applicationCommands(botConfig.clientID),
+            Routes.applicationCommands(process.env.clientID),
             { body: slashCommands }
         )
         console.log('succesfully reloaded application (/) commands.');
@@ -123,4 +122,4 @@ client.on('interactionCreate', async interaction => {
         }
     }
 })
-client.login(botConfig.token);
+client.login(process.env.token);

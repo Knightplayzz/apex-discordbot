@@ -10,8 +10,7 @@ module.exports = {
 
 
     async execute(client, interaction) {
-        const botConfig = require('../botConfig.json')
-        var url = `https://api.mozambiquehe.re/predator?auth=${botConfig.auth}`
+        var url = `https://api.mozambiquehe.re/predator?auth=${process.env.auth}`
         fetch(url)
             .then(res => res.json())
             .then(data => {

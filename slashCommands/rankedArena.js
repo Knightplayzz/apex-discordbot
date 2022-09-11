@@ -9,8 +9,7 @@ module.exports = {
         .setDescription('Shows the current in-game ranked arena map.'),
 
     async execute(client, interaction) {
-        const botConfig = require('../botConfig.json')
-        var url = `https://api.mozambiquehe.re/maprotation?auth=${botConfig.auth}&version=2`
+        var url = `https://api.mozambiquehe.re/maprotation?auth=${process.env.auth}&version=2`
 
         fetch(url)
             .then(res => res.json())

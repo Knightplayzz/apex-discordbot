@@ -3,7 +3,6 @@ const { MessageEmbed } = require("discord.js");
 const fetch = require('node-fetch')
 const discord = require("discord.js")
 const firebase = require('firebase/app')
-const botConfig = require('../botConfig.json')
 const { getFirestore, collection, doc, setDoc, getDoc } = require('firebase/firestore')
 const firebaseConfig = {
     apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",
@@ -68,7 +67,7 @@ module.exports = {
 
             interaction.reply({ embeds: [botEmbed], ephemeral: true })
         } else {
-            var url = `https://api.mozambiquehe.re/bridge?version=5&platform=${platform}&player=${player}&auth=${botConfig.auth}`
+            var url = `https://api.mozambiquehe.re/bridge?version=5&platform=${platform}&player=${player}&auth=${process.env.auth}`
             fetch(url)
                 .then(res => res.json())
                 .then(async data => {

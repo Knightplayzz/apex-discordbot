@@ -3,7 +3,6 @@ const { MessageEmbed } = require("discord.js");
 const fetch = require('node-fetch')
 const discord = require("discord.js")
 const firebase = require('firebase/app')
-const botConfig = require('../botConfig.json')
 const { getFirestore, collection, doc, getDoc, deleteDoc } = require('firebase/firestore')
 const firebaseConfig = {
     apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",

@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, MessageAttachment } = require("discord.js");
 const fetch = require('node-fetch')
 const discord = require("discord.js")
-const botConfig = require('../botConfig.json');
 const { error } = require('console');
 
 module.exports = {
@@ -12,7 +11,7 @@ module.exports = {
 
     async execute(client, interaction) {
         try{
-        var url = `https://api.mozambiquehe.re/crafting?auth=${botConfig.auth}` 
+        var url = `https://api.mozambiquehe.re/crafting?auth=${process.env.auth}` 
         console.log(url)
         fetch(url)
             .then(res => res.json())

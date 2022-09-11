@@ -22,8 +22,7 @@ module.exports = {
                 )),
 
     async execute(client, interaction) {
-        const botConfig = require('../botConfig.json')
-        var url = `https://api.mozambiquehe.re/servers?auth=${botConfig.auth}`
+        var url = `https://api.mozambiquehe.re/servers?auth=${process.env.auth}`
         var region = interaction.options.get('region').value
 
         fetch(url)

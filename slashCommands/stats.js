@@ -29,7 +29,7 @@ module.exports = {
 
 
     async execute(client, interaction) {
-        const botConfig = require('../botConfig.json')
+        
         var platform = interaction.options.get('platform').value
         var platform3 = interaction.options.get('platform').value
         var platform2 = ''
@@ -48,7 +48,7 @@ module.exports = {
         }
         const player = interaction.options.getString('username')
 
-        var url = `https://api.mozambiquehe.re/bridge?version=5&platform=${platform}&player=${player}&auth=${botConfig.auth}`
+        var url = `https://api.mozambiquehe.re/bridge?version=5&platform=${platform}&player=${player}&auth=${process.env.auth}`
 
         fetch(url)
             .then(res => res.json())
