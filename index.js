@@ -65,7 +65,7 @@ client.on("messageCreate", message => {
         })
        
         var botEmbed = new discord.MessageEmbed()
-            .setTitle(`${client.user.username} :heart: `)
+            .setTitle(`${client.user.username} :heart: [${client.guilds.cache.size}] `)
             .setDescription(guildNames2)
             .setFooter(`${client.user.username} ❤️`)
             .setTimestamp()
