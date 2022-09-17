@@ -47,48 +47,50 @@ module.exports = {
         const player = interaction.options.getString('username')
 
         var url = `https://api.mozambiquehe.re/bridge?version=5&platform=${platform}&player=${player}&auth=${process.env.auth}`
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                var url2 = 'https://apex.tracker.gg'
-                try {
-                    url2 = `https://apex.tracker.gg/apex/profile/${platform2}/${data.global.name}/overview`
-                } catch { }
+        try {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    var url2 = 'https://apex.tracker.gg'
+                    try {
+                        url2 = `https://apex.tracker.gg/apex/profile/${platform2}/${data.global.name}/overview`
+                    } catch { }
 
-                try {
-                    if (data.Error) {
-                        var botEmbed = new discord.MessageEmbed()
-                            .setTitle(`ERROR`)
-                            .setDescription(`${data.Error}`)
-                            .setFooter(`${client.user.username} ❤️`)
-                            .setTimestamp()
-                            .setColor("RED")
+                    try {
+                        if (data.Error) {
+                            var botEmbed = new discord.MessageEmbed()
+                                .setTitle(`ERROR`)
+                                .setDescription(`${data.Error}`)
+                                .setFooter(`${client.user.username} ❤️`)
+                                .setTimestamp()
+                                .setColor("RED")
 
-                        interaction.reply({ embeds: [botEmbed], ephemeral: true })
-                        return
-                    }
-                } catch (error) { console.log(error) }
-                const row = new discord.MessageActionRow().addComponents(
-                    new discord.MessageButton()
-                        .setLabel("Go to Profile")
-                        .setURL(url2)
-                        .setStyle("LINK"))
-                        
-                var botEmbed = new discord.MessageEmbed()
-                .setTitle(data.legends.selected.LegendName)
-                .setDescription(
-                    `skin: ${data.legends.selected.gameInfo.skin}`+
-                    `\nframe: ${data.legends.selected.gameInfo.frame}`+
-                    `\npose: ${data.legends.selected.gameInfo.pose}`+
-                    `\nIntro: ${data.legends.selected.gameInfo.intro}`
-                    )
-                .setFooter(`${client.user.username} ❤️`)
-                .setTimestamp()
-                .setThumbnail(data.legends.selected.ImgAssets.icon)
-                interaction.reply({ embeds: [botEmbed], components: [row], ephemeral: true })
-                //console.log(data)
+                            interaction.reply({ embeds: [botEmbed], ephemeral: true })
+                            return
+                        }
+                    } catch (error) { console.log(error) }
+                    const row = new discord.MessageActionRow().addComponents(
+                        new discord.MessageButton()
+                            .setLabel("Go to Profile")
+                            .setURL(url2)
+                            .setStyle("LINK"))
 
-        
-            })
+                    var botEmbed = new discord.MessageEmbed()
+                        .setTitle(data.legends.selected.LegendName)
+                        .setDescription(
+                            `skin: ${data.legends.selected.gameInfo.skin}` +
+                            `\nframe: ${data.legends.selected.gameInfo.frame}` +
+                            `\npose: ${data.legends.selected.gameInfo.pose}` +
+                            `\nIntro: ${data.legends.selected.gameInfo.intro}`
+                        )
+                        .setFooter(`${client.user.username} ❤️`)
+                        .setTimestamp()
+                        .setThumbnail(data.legends.selected.ImgAssets.icon)
+                    interaction.reply({ embeds: [botEmbed], components: [row], ephemeral: true })
+                    //console.log(data)
+
+
+                })
+        } catch (error) { console.log(error) }
     }
 }

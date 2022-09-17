@@ -11,10 +11,11 @@ module.exports = {
 
     async execute(client, interaction) {
         var url = `https://api.mozambiquehe.re/predator?auth=${process.env.auth}`
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                try {
+        try {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+
                     var botEmbed = new discord.MessageEmbed()
                         .setTitle("Points to reach Apex Predator?")
                         .setAuthor({ name: 'Click to view charts', iconURL: client.user.avatarURL(), url: 'https://apexlegendsstatus.com/points-for-predator?utm_source=discord&utm_campaign=predator_cmd' })
@@ -37,7 +38,7 @@ module.exports = {
                         .setThumbnail('https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/4/43/Ranked_Tier7_Apex_Predator.png/revision/latest?cb=20190902181417')
 
                     interaction.reply({ embeds: [botEmbed], ephemeral: true })
-                } catch (error) { console.log(error) }
-            })
+                })
+        } catch (error) { console.log(error) }
     }
 }

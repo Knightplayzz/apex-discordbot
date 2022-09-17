@@ -24,11 +24,11 @@ module.exports = {
     async execute(client, interaction) {
         var url = `https://api.mozambiquehe.re/servers?auth=${process.env.auth}`
         var region = interaction.options.get('region').value
+        try {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
 
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                try {
                     var titleText = ''
                     var embedColor = 'RED'
                     if (data.Origin_login[region].Status === 'UP' && data.EA_novafusion[region].Status === 'UP' && data.EA_accounts[region].Status === 'UP' && data.ApexOauth_Crossplay[region].Status === 'UP') {
@@ -68,7 +68,7 @@ module.exports = {
                         .setTimestamp()
 
                     interaction.reply({ embeds: [botEmbed], ephemeral: true })
-                } catch (error) { console.log(error) }
-            })
+                })
+        } catch (error) { console.log(error) }
     }
 }

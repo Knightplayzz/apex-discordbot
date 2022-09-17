@@ -10,11 +10,10 @@ module.exports = {
 
     async execute(client, interaction) {
         var url = `https://api.mozambiquehe.re/maprotation?auth=${process.env.auth}`
-
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                try {
+        try {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
                     var botEmbed = new discord.MessageEmbed()
                         .setTitle(`${data.current.map} -> ${data.next.map}`)
                         .setDescription(
@@ -35,7 +34,7 @@ module.exports = {
                         .setColor('ORANGE')
 
                     interaction.reply({ embeds: [botEmbed], ephemeral: true })
-                } catch (error) { console.log(error) }
-            })
+                })
+        } catch (error) { console.log(error) }
     }
 }
