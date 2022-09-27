@@ -17,7 +17,7 @@ module.exports = {
                 .then(async data => {
 
                     if (data.voted === 1) {
-                        console.log(interaction.guild.id)
+                        
                         if (interaction.guild.id === "1016756019952635914" || interaction.guild.id === "1018244995792257114") {
                             var botEmbed = new discord.MessageEmbed()
                                 .setTitle(`YOU VOTED`)
