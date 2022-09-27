@@ -31,7 +31,7 @@ module.exports = {
                 "\n``/unlink`` - Unlink your Discord account from your Apex username."+
                 "\n``/me`` - Shows your own stats if an account has been linked."+
 
-                "\n\n:shield: Support Server: [click](https://discord.com/invite/6xFyJpxu9f)"+
+                "\n\n:shield: Support Server: [click](https://discord.gg/8tfdBpUcca)"+
                 "\n:thumbsup: Donations: [click](https://donorbox.org/apex-bot)"
 
                 )
