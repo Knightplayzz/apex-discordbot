@@ -26,15 +26,17 @@ module.exports = {
                                 .setFooter(`${client.user.username} ❤️`)
                                 .setTimestamp()
                                 .setColor("GREEN")
-                            interaction.reply({ embeds: [botEmbed], ephemeral: true })
-                            var role = interaction.guild.roles.cache.find(role => role.name === "VOTE");
-                            if (!role) { return }
-                            interaction.member.roles.add(role)
+                            try {
+                                interaction.reply({ embeds: [botEmbed], ephemeral: true })
+                                var role = interaction.guild.roles.cache.find(role => role.name === "VOTE");
+                                if (!role) { return }
+                                interaction.member.roles.add(role)
+                            } catch (error) { console.log(error) }
                         } else {
                             var botEmbed = new discord.MessageEmbed()
                                 .setTitle(`YOU VOTED`)
                                 .setDescription(
-                                    `Thank you for voting!`+
+                                    `Thank you for voting!` +
                                     `\nFor the reward join the [support server](https://discord.gg/8tfdBpUcca)!`)
                                 .setFooter(`${client.user.username} ❤️`)
                                 .setTimestamp()
