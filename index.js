@@ -120,6 +120,6 @@ client.on('interactionCreate', async interaction => {
             await interaction.reply({ embeds: [errorEmbed] })
             console.log(err)
         }
-    }
+    }  
 })
 client.login(process.env.token);
