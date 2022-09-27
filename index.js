@@ -128,4 +128,10 @@ client.on("guildCreate", guild2 => {
     let x = client.guilds.cache.size
     channel.setName("Servers Active: "+ x.toString())
 })
+client.on("guildDelete", guild2 => {
+    let guild = client.guilds.cache.get("1018244995792257114");
+    let channel = guild.channels.cache.get("1024393334007009391")
+    let x = client.guilds.cache.size
+    channel.setName("Servers Active: "+ x.toString())
+})
 client.login(process.env.token);
