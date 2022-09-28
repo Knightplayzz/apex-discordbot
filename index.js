@@ -35,18 +35,18 @@ client.once("ready", async message => {
     console.log(`${client.user.username} is online.`);
     var url = `https://api.mozambiquehe.re/maprotation?auth=${process.env.auth}`
     setInterval(function () {
-        try{
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                try{
-                    client.user.setActivity(`${data.current.map} [${data.current.remainingMins}min]`, {
-                        type: "PLAYING"
-                    });
-                }catch(error){ return console.log(error)}
-                
-            })
-        }catch(error){console.log(error)}
+        try {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    try {
+                        client.user.setActivity(`${data.current.map} [${data.current.remainingMins}min]`, {
+                            type: "PLAYING"
+                        });
+                    } catch (error) { return console.log(error) }
+
+                })
+        } catch (error) { console.log(error) }
     }, 20 * 1000)
 });
 client.on("messageCreate", message => {
@@ -58,21 +58,19 @@ client.on("messageCreate", message => {
     var guildNames = []
     var guildNames2 = ''
     if (messageString === 'serveramount') {
-        client.guilds.cache.forEach(g => {
-            guildNames.push(g.name)
-            guildNames2 = guildNames.join(', ')
-            guildNames2 = guildNames2.replace(/, /g, '\n')
-        })
-       
-        var botEmbed = new discord.MessageEmbed()
-            .setTitle(`${client.user.username} :heart: [${client.guilds.cache.size}] `)
-            .setDescription(guildNames2)
-            .setFooter(`${client.user.username} ❤️`)
-            .setTimestamp()
-
-
-
-        message.channel.send({ embeds: [botEmbed] })
+        if (message.author.id === "398536299537235978") {
+            client.guilds.cache.forEach(g => {
+                guildNames.push(g.name)
+                guildNames2 = guildNames.join(', ')
+                guildNames2 = guildNames2.replace(/, /g, '\n')
+            })
+            var botEmbed = new discord.MessageEmbed()
+                .setTitle(`${client.user.username} :heart: [${client.guilds.cache.size}] `)
+                .setDescription(guildNames2)
+                .setFooter(`${client.user.username} ❤️`)
+                .setTimestamp()
+            message.channel.send({ embeds: [botEmbed] })
+        } else { return }
     }
 })
 
@@ -120,18 +118,18 @@ client.on('interactionCreate', async interaction => {
             await interaction.reply({ embeds: [errorEmbed] })
             console.log(err)
         }
-    }  
+    }
 })
 client.on("guildCreate", guild2 => {
     let guild = client.guilds.cache.get("1018244995792257114");
     let channel = guild.channels.cache.get("1024393334007009391")
     let x = client.guilds.cache.size
-    channel.setName("Servers Active: "+ x.toString())
+    channel.setName("Servers Active: " + x.toString())
 })
 client.on("guildDelete", guild2 => {
     let guild = client.guilds.cache.get("1018244995792257114");
     let channel = guild.channels.cache.get("1024393334007009391")
     let x = client.guilds.cache.size
-    channel.setName("Servers Active: "+ x.toString())
+    channel.setName("Servers Active: " + x.toString())
 })
 client.login(process.env.token);
