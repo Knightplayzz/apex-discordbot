@@ -132,4 +132,24 @@ client.on("guildDelete", guild2 => {
     let x = client.guilds.cache.size
     channel.setName("Servers Active: " + x.toString())
 })
+var cron = require('node-cron');
+
+cron.schedule('* 6 1-31 * *', () => {
+    var guildName = client.guilds.cache.find(guild => guild.id === "1018244995792257114")
+    if (!guildName) { return }
+    var role1 = guildName.roles.cache.find(role => role.name === "VOTE");
+    if (!role1) { return }
+    guildName.roles.create({
+        name: role1.name,
+        color: role1.color,
+        hoist: role1.hoist,
+        position: role1.position,
+        permissions: role1.permissions,
+        mentionable: role1.mentionable
+
+    }).then(x => {
+        role1.delete()
+    })
+});
+
 client.login(process.env.token);
