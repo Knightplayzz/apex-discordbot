@@ -37,7 +37,7 @@ module.exports = {
                                 .setTitle(`YOU VOTED`)
                                 .setDescription(
                                     `Thank you for voting!` +
-                                    `\nFor the reward join the [support server](https://discord.gg/8tfdBpUcca)!`)
+                                    `\nFor the reward join the [support server](https://discord.gg/cgdssWTqAT)!`)
                                 .setFooter(`${client.user.username} ❤️`)
                                 .setTimestamp()
                                 .setColor("GREEN")
