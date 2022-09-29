@@ -6,7 +6,7 @@ const discord = require("discord.js")
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('vote')
-        .setDescription('Vote to collect rewards!'),
+        .setDescription('Vote to receive a reward!'),
 
     async execute(client, interaction) {
 
@@ -37,7 +37,7 @@ module.exports = {
                                 .setTitle(`YOU VOTED`)
                                 .setDescription(
                                     `Thank you for voting!` +
-                                    `\nFor the reward join the [support server](https://discord.gg/cgdssWTqAT)!`)
+                                    `\nFor the reward join the [support server](${process.env.discordInvite})!`)
                                 .setFooter(`${client.user.username} ❤️`)
                                 .setTimestamp()
                                 .setColor("GREEN")
