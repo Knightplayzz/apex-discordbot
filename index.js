@@ -58,7 +58,6 @@ client.on("messageCreate", message => {
     var guildNames = []
     var guildNames2 = ''
     if (messageString === 'serveramount') {
-        if (message.author.id === "398536299537235978") {
             client.guilds.cache.forEach(g => {
                 guildNames.push(g.name)
                 guildNames2 = guildNames.join(', ')
@@ -70,7 +69,6 @@ client.on("messageCreate", message => {
                 .setFooter(`${client.user.username} ❤️`)
                 .setTimestamp()
             message.channel.send({ embeds: [botEmbed] })
-        } else { return }
     }
 })
 
