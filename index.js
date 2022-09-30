@@ -167,6 +167,7 @@ cron.schedule('* 0-23 1-31 * *',async () => {
         var data2 = fG.data()
         if (data2.on === false) { return }
         let x = client.guilds.cache.get(fG.id)
+        if(!x){return}
         var rolePred = x.roles.cache.find(role => role.name === "Predator");
         var roleMasters = x.roles.cache.find(role => role.name === "Masters");
         var roleDiamond = x.roles.cache.find(role => role.name === "Diamond");
