@@ -144,7 +144,7 @@ cron.schedule('* 6 1-31 * *', () => {
 
 
 
-cron.schedule('* 0-23 1-31 * *',async () => {
+cron.schedule('* 0-23 1-31 * *', async () => {
     console.log("AUTOROLE UPDATE")
     const firebase = require('firebase/app')
     const { getFirestore, collection, getDocs, query, } = require('firebase/firestore')
@@ -167,7 +167,8 @@ cron.schedule('* 0-23 1-31 * *',async () => {
         var data2 = fG.data()
         if (data2.on === false) { return }
         let x = client.guilds.cache.get(fG.id)
-        if(!x){return}
+        if (!x) { return }
+        if (!x.me.permission.has("ADMINISTRATOR")) { return interaction.reply({ content: "The bot doesn't have the permission to do this! \n Invite the bot again by pressing [here](https://discord.com/api/oauth2/authorize?client_id=1014207340188270673&permissions=8&scope=bot%20applications.commands)" }) }
         var rolePred = x.roles.cache.find(role => role.name === "Predator");
         var roleMasters = x.roles.cache.find(role => role.name === "Masters");
         var roleDiamond = x.roles.cache.find(role => role.name === "Diamond");
@@ -205,13 +206,13 @@ cron.schedule('* 0-23 1-31 * *',async () => {
             fetch(url)
                 .then(res => res.json())
                 .then(async data => {
-                    if(data.global.rank.rankName === "Predator"){z.roles.add(rolePred)}
-                    if(data.global.rank.rankName === "Masters"){z.roles.add(roleMasters)}
-                    if(data.global.rank.rankName === "Diamond"){z.roles.add(roleDiamond)}
-                    if(data.global.rank.rankName === "Platinum"){z.roles.add(rolePlatinum)}
-                    if(data.global.rank.rankName === "Gold"){z.roles.add(roleGold)}
-                    if(data.global.rank.rankName === "Silver"){z.roles.add(roleSilver)}
-                    if(data.global.rank.rankName === "Bronze"){z.roles.add(roleBronze)}
+                    if (data.global.rank.rankName === "Predator") { z.roles.add(rolePred) }
+                    if (data.global.rank.rankName === "Masters") { z.roles.add(roleMasters) }
+                    if (data.global.rank.rankName === "Diamond") { z.roles.add(roleDiamond) }
+                    if (data.global.rank.rankName === "Platinum") { z.roles.add(rolePlatinum) }
+                    if (data.global.rank.rankName === "Gold") { z.roles.add(roleGold) }
+                    if (data.global.rank.rankName === "Silver") { z.roles.add(roleSilver) }
+                    if (data.global.rank.rankName === "Bronze") { z.roles.add(roleBronze) }
                 })
         })
     });
