@@ -145,7 +145,7 @@ cron.schedule('* 6 1-31 * *', () => {
 
 
 cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 0-23 1-31 * *', async () => {
-    console.log("AUTOROLE UPDATE")
+    //console.log("AUTOROLE UPDATE")
     const firebase = require('firebase/app')
     const { getFirestore, collection, getDocs, query, } = require('firebase/firestore')
     const firebaseConfig = {
@@ -168,7 +168,7 @@ cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 0-23 1-31 * *', async () => {
         if (data2.on === false) { return }
         let x = client.guilds.cache.get(fG.id)
         if (!x) { return console.log("NO GUILD FOUND")}
-        console.log(x.name)
+        //console.log(x.name)
         if (!x.me.permissions.has("ADMINISTRATOR")) { return }
         var rolePred = x.roles.cache.find(role => role.name === "Predator");
         var roleMasters = x.roles.cache.find(role => role.name === "Masters");
