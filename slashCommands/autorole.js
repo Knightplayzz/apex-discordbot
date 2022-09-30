@@ -39,7 +39,7 @@ module.exports = {
 
     async execute(client, interaction) {
 
-         if (!interaction.guild.me.permission.has("ADMINISTRATOR")){return interaction.reply({content: "The bot doesn't have the permission to do this! \n Invite the bot again by pressing [here](https://discord.com/api/oauth2/authorize?client_id=1014207340188270673&permissions=8&scope=bot%20applications.commands)"})}
+         if (!interaction.guild.me.permissions.has("ADMINISTRATOR")){return interaction.reply({content: "The bot doesn't have the permission to do this! \n Invite the bot again by pressing [here](https://discord.com/api/oauth2/authorize?client_id=1014207340188270673&permissions=8&scope=bot%20applications.commands)"})}
 
         var onOrOff = interaction.options.get('autorole').value
         var on = false
