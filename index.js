@@ -206,6 +206,9 @@ cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 0-23 1-31 * *', async () => {
             fetch(url)
                 .then(res => res.json())
                 .then(async data => {
+                    if(!data.global){return}
+                    if(data.error){return}
+                    if(data.Error){return}
                     if (data.global.rank.rankName === "Predator") { z.roles.add(rolePred) }
                     if (data.global.rank.rankName === "Masters") { z.roles.add(roleMasters) }
                     if (data.global.rank.rankName === "Diamond") { z.roles.add(roleDiamond) }
