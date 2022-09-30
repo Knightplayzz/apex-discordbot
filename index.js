@@ -168,7 +168,7 @@ cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 0-23 1-31 * *', async () => {
         if (data2.on === false) { return }
         let x = client.guilds.cache.get(fG.id)
         if (!x) { return }
-        if (!x.me.permissions.has("ADMINISTRATOR")) { return interaction.reply({ content: "The bot doesn't have the permission to do this! \n Invite the bot again by pressing [here](https://discord.com/api/oauth2/authorize?client_id=1014207340188270673&permissions=8&scope=bot%20applications.commands)" }) }
+        if (!x.me.permissions.has("ADMINISTRATOR")) { return }
         var rolePred = x.roles.cache.find(role => role.name === "Predator");
         var roleMasters = x.roles.cache.find(role => role.name === "Masters");
         var roleDiamond = x.roles.cache.find(role => role.name === "Diamond");
