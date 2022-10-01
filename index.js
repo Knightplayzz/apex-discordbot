@@ -195,64 +195,74 @@ cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 0-23 1-31 * *', async () => {
         var roleBronze = x.roles.cache.find(role => role.name === "Bronze");
 
         var clientPos = x.roles.cache.find(role => role.name === "Apex")
-        if (clientPos.position < rolePred.position || clientPos.position < roleMasters.position || clientPos.position < roleDiamond.position || clientPos.position < rolePlatinum.position || clientPos.position < roleGold.position || clientPos.position < roleSilver.position || clientPos.position < roleBronze.position) { return console.log("Can't acces role in guild" + x.name) }
-        console.log("PASSED")
-        const q2 = query(collection(db, "users"))
-        const querySnapshot = await getDocs(q2);
-        querySnapshot.forEach(async (doc2) => {
-            let data = doc2.data()
-            let z = x.members.cache.get(doc2.id)
-            if (!z) { return }
-            let url = `https://api.mozambiquehe.re/bridge?version=5&platform=${data.platform}&player=${data.username}&auth=${process.env.auth}`
-            fetch(url)
-                .then(res => res.json())
-                .then(async data => {
-                    if (!data.global) { return }
-                    if (data.error) { return }
-                    if (data.Error) { return }
-                    if (data.global.rank.rankName === "Predator") {
-                        if (z.roles.cache.has(rolePred.id)) { return }
-                        if (z.roles.cache.has(roleMasters)){z.roles.remove(roleMasters)}
-                        z.roles.add(rolePred)
-                    }
-                    if (data.global.rank.rankName === "Masters") {
-                        if (z.roles.cache.has(roleMasters.id)) { return }
-                        if (z.roles.cache.has(rolePred)){z.roles.remove(rolePred)}
-                        if (z.roles.cache.has(roleDiamond)){z.roles.remove(roleDiamond)}
-                        z.roles.add(roleMasters)
-                    }
-                    if (data.global.rank.rankName === "Diamond") {
-                        if (z.roles.cache.has(roleDiamond.id)) { return }
-                        if (z.roles.cache.has(roleMasters)){z.roles.remove(roleMasters)}
-                        if (z.roles.cache.has(rolePlatinum)){z.roles.remove(rolePlatinum)}
-                        z.roles.add(roleDiamond)
-                    }
-                    if (data.global.rank.rankName === "Platinum") {
-                        if (z.roles.cache.has(rolePlatinum.id)) { return console.log("HAS RANK")}
-                        console.log("JUST PASSED IT")
-                        if (z.roles.cache.has(roleDiamond)){z.roles.remove(roleDiamond)}
-                        if (z.roles.cache.has(roleGold)){z.roles.remove(roleGold)}
-                        z.roles.add(rolePlatinum)
-                    }
-                    if (data.global.rank.rankName === "Gold") {
-                        if (z.roles.cache.has(roleGold.id)) { return }
-                        if (z.roles.cache.has(rolePlatinum)){z.roles.remove(rolePlatinum)}
-                        if (z.roles.cache.has(roleSilver)){z.roles.remove(roleSilver)}
-                        z.roles.add(roleGold)
-                    }
-                    if (data.global.rank.rankName === "Silver") {
-                        if (z.roles.cache.has(roleSilver.id)) { return }
-                        if (z.roles.cache.has(roleGold)){z.roles.remove(roleGold)}
-                        if (z.roles.cache.has(roleBronze)){z.roles.remove(roleBronze)}
-                        z.roles.add(roleSilver)
-                    }
-                    if (data.global.rank.rankName === "Bronze") {
-                        if (z.roles.cache.has(roleBronze.id)) { return }
-                        if (z.roles.cache.has(roleSilver)){z.roles.remove(roleSilver)}
-                        z.roles.add(roleBronze)
-                    }
-                })
-        })
+        if (clientPos.position < rolePred.position || clientPos.position < roleMasters.position || clientPos.position < roleDiamond.position || clientPos.position < rolePlatinum.position || clientPos.position < roleGold.position || clientPos.position < roleSilver.position || clientPos.position < roleBronze.position) { return console.log("Can't acces role in guild" + x.name) } else {
+            console.log("PASSED")
+            const q2 = query(collection(db, "users"))
+            const querySnapshot = await getDocs(q2);
+            querySnapshot.forEach(async (doc2) => {
+                let data = doc2.data()
+                let z = x.members.cache.get(doc2.id)
+                if (!z) { return }
+                let url = `https://api.mozambiquehe.re/bridge?version=5&platform=${data.platform}&player=${data.username}&auth=${process.env.auth}`
+                fetch(url)
+                    .then(res => res.json())
+                    .then(async data => {
+                        if (!data.global) { return }
+                        if (data.error) { return }
+                        if (data.Error) { return }
+                        if (data.global.rank.rankName === "Predator") {
+                            if (z.roles.cache.has(rolePred.id)) { return } else {
+                                if (z.roles.cache.has(roleMasters)) { z.roles.remove(roleMasters) }
+                                z.roles.add(rolePred)
+                            }
+                        }
+                        if (data.global.rank.rankName === "Masters") {
+                            if (z.roles.cache.has(roleMasters.id)) { return } else {
+                                if (z.roles.cache.has(rolePred)) { z.roles.remove(rolePred) }
+                                if (z.roles.cache.has(roleDiamond)) { z.roles.remove(roleDiamond) }
+                                z.roles.add(roleMasters)
+                            }
+                        }
+                        if (data.global.rank.rankName === "Diamond") {
+                            if (z.roles.cache.has(roleDiamond.id)) { return } else {
+                                if (z.roles.cache.has(roleMasters)) { z.roles.remove(roleMasters) }
+                                if (z.roles.cache.has(rolePlatinum)) { z.roles.remove(rolePlatinum) }
+                                z.roles.add(roleDiamond)
+                            }
+                        }
+                        if (data.global.rank.rankName === "Platinum") {
+                            if (z.roles.cache.has(rolePlatinum.id)) { return console.log("HAS RANK") } else {
+                                console.log("JUST PASSED IT")
+                                if (z.roles.cache.has(roleDiamond)) { z.roles.remove(roleDiamond) }
+                                if (z.roles.cache.has(roleGold)) { z.roles.remove(roleGold) }
+                                z.roles.add(rolePlatinum)
+                            }
+                        }
+                        if (data.global.rank.rankName === "Gold") {
+                            if (z.roles.cache.has(roleGold.id)) { return } else {
+                                if (z.roles.cache.has(rolePlatinum)) { z.roles.remove(rolePlatinum) }
+                                if (z.roles.cache.has(roleSilver)) { z.roles.remove(roleSilver) }
+                                z.roles.add(roleGold)
+                            }
+                        }
+                        if (data.global.rank.rankName === "Silver") {
+                            if (z.roles.cache.has(roleSilver.id)) { return } else {
+                                if (z.roles.cache.has(roleGold)) { z.roles.remove(roleGold) }
+                                if (z.roles.cache.has(roleBronze)) { z.roles.remove(roleBronze) }
+                                z.roles.add(roleSilver)
+                            }
+                        }
+                        if (data.global.rank.rankName === "Bronze") {
+                            if (z.roles.cache.has(roleBronze.id)) { return } else {
+                                if (z.roles.cache.has(roleSilver)) { z.roles.remove(roleSilver) }
+                                z.roles.add(roleBronze)
+                            }
+                        }
+
+                    })
+
+            })
+        }
     });
 })
 
