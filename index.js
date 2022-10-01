@@ -228,7 +228,8 @@ cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 0-23 1-31 * *', async () => {
                         z.roles.add(roleDiamond)
                     }
                     if (data.global.rank.rankName === "Platinum") {
-                        if (z.roles.cache.has(rolePlatinum.id)) { return }
+                        if (z.roles.cache.has(rolePlatinum.id)) { return console.log("HAS RANK")}
+                        console.log("JUST PASSED IT")
                         if (z.roles.cache.has(roleDiamond)){z.roles.remove(roleDiamond)}
                         if (z.roles.cache.has(roleGold)){z.roles.remove(roleGold)}
                         z.roles.add(rolePlatinum)
