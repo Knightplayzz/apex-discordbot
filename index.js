@@ -225,7 +225,8 @@ cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 0-23 1-31 * *', async () => {
                         }
                         if (data.global.rank.rankName === "Diamond") {
                             if (z.roles.cache.has(roleDiamond.id)) { return } else {
-                                if (z.roles.cache.has(roleMasters)) { z.roles.remove(roleMasters) }
+                                if (z.roles.cache.has(roleMasters)) { z.roles.remove(roleMasters)
+                                console.log("REMOVE DIA RANK") }
                                 if (z.roles.cache.has(rolePlatinum)) { z.roles.remove(rolePlatinum) }
                                 z.roles.add(roleDiamond)
                             }
