@@ -212,51 +212,48 @@ cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 0-23 1-31 * *', async () => {
                         if (data.Error) { return }
                         if (data.global.rank.rankName === "Predator") {
                             if (z.roles.cache.has(rolePred.id)) { return } else {
-                                if (z.roles.cache.has(roleMasters)) { z.roles.remove(roleMasters) }
+                                if (z.roles.cache.has(roleMasters.id)) { z.roles.remove(roleMasters) }
                                 z.roles.add(rolePred)
                             }
                         }
                         if (data.global.rank.rankName === "Masters") {
                             if (z.roles.cache.has(roleMasters.id)) { return } else {
-                                if (z.roles.cache.has(rolePred)) { z.roles.remove(rolePred) }
-                                if (z.roles.cache.has(roleDiamond)) { z.roles.remove(roleDiamond) }
+                                if (z.roles.cache.has(rolePred.id)) { z.roles.remove(rolePred) }
+                                if (z.roles.cache.has(roleDiamond.id)) { z.roles.remove(roleDiamond) }
                                 z.roles.add(roleMasters)
                             }
                         }
                         if (data.global.rank.rankName === "Diamond") {
                             if (z.roles.cache.has(roleDiamond.id)) { return } else {
-                                if (z.roles.cache.has(roleMasters)) { z.roles.remove(roleMasters) }
-                                if (z.roles.cache.has(rolePlatinum)) { z.roles.remove(rolePlatinum) }
+                                if (z.roles.cache.has(roleMasters.id)) { z.roles.remove(roleMasters) }
+                                if (z.roles.cache.has(rolePlatinum.id)) { z.roles.remove(rolePlatinum) }
                                 z.roles.add(roleDiamond)
                             }
                         }
                         if (data.global.rank.rankName === "Platinum") {
                             if (z.roles.cache.has(rolePlatinum.id)) { return } else {
-                                if (z.roles.cache.has(roleDiamond)) {
-                                    z.roles.remove(roleDiamond)
-                                    console.log("REMOVE DIA")
-                                }
-                                if (z.roles.cache.has(roleGold)) { z.roles.remove(roleGold) }
+                                if (z.roles.cache.has(roleDiamond.id)) { z.roles.remove(roleDiamond.id) }
+                                if (z.roles.cache.has(roleGold.id)) { z.roles.remove(roleGold) }
                                 z.roles.add(rolePlatinum)
                             }
                         }
                         if (data.global.rank.rankName === "Gold") {
                             if (z.roles.cache.has(roleGold.id)) { return } else {
-                                if (z.roles.cache.has(rolePlatinum)) { z.roles.remove(rolePlatinum) }
-                                if (z.roles.cache.has(roleSilver)) { z.roles.remove(roleSilver) }
+                                if (z.roles.cache.has(rolePlatinum.id)) { z.roles.remove(rolePlatinum) }
+                                if (z.roles.cache.has(roleSilver.id)) { z.roles.remove(roleSilver) }
                                 z.roles.add(roleGold)
                             }
                         }
                         if (data.global.rank.rankName === "Silver") {
                             if (z.roles.cache.has(roleSilver.id)) { return } else {
-                                if (z.roles.cache.has(roleGold)) { z.roles.remove(roleGold) }
-                                if (z.roles.cache.has(roleBronze)) { z.roles.remove(roleBronze) }
+                                if (z.roles.cache.has(roleGold.id)) { z.roles.remove(roleGold) }
+                                if (z.roles.cache.has(roleBronze.id)) { z.roles.remove(roleBronze) }
                                 z.roles.add(roleSilver)
                             }
                         }
                         if (data.global.rank.rankName === "Bronze") {
                             if (z.roles.cache.has(roleBronze.id)) { return } else {
-                                if (z.roles.cache.has(roleSilver)) { z.roles.remove(roleSilver) }
+                                if (z.roles.cache.has(roleSilver.id)) { z.roles.remove(roleSilver) }
                                 z.roles.add(roleBronze)
                             }
                         }
