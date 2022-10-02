@@ -165,102 +165,105 @@ cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 0-23 1-31 * *', async () => {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (fG) => {
         var data2 = fG.data()
-        if (data2.on === false) { return }
-        let x = client.guilds.cache.get(fG.id)
-        if (!x) { return console.log("NO GUILD FOUND") }
-        //console.log(x.name)
-        if (!x.me.permissions.has("ADMINISTRATOR")) { return }
-        var rolePred = x.roles.cache.find(role => role.name === "Predator");
-        var roleMasters = x.roles.cache.find(role => role.name === "Masters");
-        var roleDiamond = x.roles.cache.find(role => role.name === "Diamond");
-        var rolePlatinum = x.roles.cache.find(role => role.name === "Platinum");
-        var roleGold = x.roles.cache.find(role => role.name === "Gold");
-        var roleSilver = x.roles.cache.find(role => role.name === "Silver");
-        var roleBronze = x.roles.cache.find(role => role.name === "Bronze");
+        if (data2.on === false) { return } else {
+            let x = client.guilds.cache.get(fG.id)
+            if (!x) { return console.log("NO GUILD FOUND") } else {
+                //console.log(x.name)
+                if (!x.me.permissions.has("ADMINISTRATOR")) { return } else {
+                    var rolePred = x.roles.cache.find(role => role.name === "Predator");
+                    var roleMasters = x.roles.cache.find(role => role.name === "Masters");
+                    var roleDiamond = x.roles.cache.find(role => role.name === "Diamond");
+                    var rolePlatinum = x.roles.cache.find(role => role.name === "Platinum");
+                    var roleGold = x.roles.cache.find(role => role.name === "Gold");
+                    var roleSilver = x.roles.cache.find(role => role.name === "Silver");
+                    var roleBronze = x.roles.cache.find(role => role.name === "Bronze");
 
-        if (!rolePred) { await x.roles.create({ name: "Predator", color: "RED", hoist: true, position: 1 }) }
-        if (!roleMasters) { await x.roles.create({ name: "Masters", color: "PURPLE", hoist: true, position: 1 }) }
-        if (!roleDiamond) { await x.roles.create({ name: "Diamond", color: "DARKBLUE", hoist: true, position: 1 }) }
-        if (!rolePlatinum) { await x.roles.create({ name: "Platinum", color: "BLUE", hoist: true, position: 1 }) }
-        if (!roleGold) { await x.roles.create({ name: "Gold", color: "YELLOW", hoist: true, position: 1 }) }
-        if (!roleSilver) { await x.roles.create({ name: "Silver", color: "GREY", hoist: true, position: 1 }) }
-        if (!roleBronze) { await x.roles.create({ name: "Bronze", color: "#9b5f3d", hoist: true, position: 1 }) }
+                    if (!rolePred) { await x.roles.create({ name: "Predator", color: "RED", hoist: true, position: 1 }) }
+                    if (!roleMasters) { await x.roles.create({ name: "Masters", color: "PURPLE", hoist: true, position: 1 }) }
+                    if (!roleDiamond) { await x.roles.create({ name: "Diamond", color: "DARKBLUE", hoist: true, position: 1 }) }
+                    if (!rolePlatinum) { await x.roles.create({ name: "Platinum", color: "BLUE", hoist: true, position: 1 }) }
+                    if (!roleGold) { await x.roles.create({ name: "Gold", color: "YELLOW", hoist: true, position: 1 }) }
+                    if (!roleSilver) { await x.roles.create({ name: "Silver", color: "GREY", hoist: true, position: 1 }) }
+                    if (!roleBronze) { await x.roles.create({ name: "Bronze", color: "#9b5f3d", hoist: true, position: 1 }) }
 
-        var rolePred = x.roles.cache.find(role => role.name === "Predator");
-        var roleMasters = x.roles.cache.find(role => role.name === "Masters");
-        var roleDiamond = x.roles.cache.find(role => role.name === "Diamond");
-        var rolePlatinum = x.roles.cache.find(role => role.name === "Platinum");
-        var roleGold = x.roles.cache.find(role => role.name === "Gold");
-        var roleSilver = x.roles.cache.find(role => role.name === "Silver");
-        var roleBronze = x.roles.cache.find(role => role.name === "Bronze");
+                    var rolePred = x.roles.cache.find(role => role.name === "Predator");
+                    var roleMasters = x.roles.cache.find(role => role.name === "Masters");
+                    var roleDiamond = x.roles.cache.find(role => role.name === "Diamond");
+                    var rolePlatinum = x.roles.cache.find(role => role.name === "Platinum");
+                    var roleGold = x.roles.cache.find(role => role.name === "Gold");
+                    var roleSilver = x.roles.cache.find(role => role.name === "Silver");
+                    var roleBronze = x.roles.cache.find(role => role.name === "Bronze");
 
-        var clientPos = x.roles.cache.find(role => role.name === "Apex")
-        if (clientPos.position < rolePred.position || clientPos.position < roleMasters.position || clientPos.position < roleDiamond.position || clientPos.position < rolePlatinum.position || clientPos.position < roleGold.position || clientPos.position < roleSilver.position || clientPos.position < roleBronze.position) { return console.log("Can't acces role in guild" + x.name) } else {
+                    var clientPos = x.roles.cache.find(role => role.name === "Apex")
+                    if (clientPos.position < rolePred.position || clientPos.position < roleMasters.position || clientPos.position < roleDiamond.position || clientPos.position < rolePlatinum.position || clientPos.position < roleGold.position || clientPos.position < roleSilver.position || clientPos.position < roleBronze.position) { return console.log("Can't acces role in guild" + x.name) } else {
 
-            const q2 = query(collection(db, "users"))
-            const querySnapshot = await getDocs(q2);
-            querySnapshot.forEach(async (doc2) => {
-                let data = doc2.data()
-                let z = x.members.cache.get(doc2.id)
-                if (!z) { return }
-                let url = `https://api.mozambiquehe.re/bridge?version=5&platform=${data.platform}&player=${data.username}&auth=${process.env.auth}`
-                fetch(url)
-                    .then(res => res.json())
-                    .then(async data => {
-                        if (!data.global) { return }
-                        if (data.error) { return }
-                        if (data.Error) { return }
-                        if (data.global.rank.rankName === "Predator") {
-                            if (z.roles.cache.has(rolePred.id)) { return } else {
-                                if (z.roles.cache.has(roleMasters.id)) { z.roles.remove(roleMasters) }
-                                z.roles.add(rolePred)
-                            }
-                        }
-                        if (data.global.rank.rankName === "Masters") {
-                            if (z.roles.cache.has(roleMasters.id)) { return } else {
-                                if (z.roles.cache.has(rolePred.id)) { z.roles.remove(rolePred) }
-                                if (z.roles.cache.has(roleDiamond.id)) { z.roles.remove(roleDiamond) }
-                                z.roles.add(roleMasters)
-                            }
-                        }
-                        if (data.global.rank.rankName === "Diamond") {
-                            if (z.roles.cache.has(roleDiamond.id)) { return } else {
-                                if (z.roles.cache.has(roleMasters.id)) { z.roles.remove(roleMasters) }
-                                if (z.roles.cache.has(rolePlatinum.id)) { z.roles.remove(rolePlatinum) }
-                                z.roles.add(roleDiamond)
-                            }
-                        }
-                        if (data.global.rank.rankName === "Platinum") {
-                            if (z.roles.cache.has(rolePlatinum.id)) { return } else {
-                                if (z.roles.cache.has(roleDiamond.id)) { z.roles.remove(roleDiamond.id) }
-                                if (z.roles.cache.has(roleGold.id)) { z.roles.remove(roleGold) }
-                                z.roles.add(rolePlatinum)
-                            }
-                        }
-                        if (data.global.rank.rankName === "Gold") {
-                            if (z.roles.cache.has(roleGold.id)) { return } else {
-                                if (z.roles.cache.has(rolePlatinum.id)) { z.roles.remove(rolePlatinum) }
-                                if (z.roles.cache.has(roleSilver.id)) { z.roles.remove(roleSilver) }
-                                z.roles.add(roleGold)
-                            }
-                        }
-                        if (data.global.rank.rankName === "Silver") {
-                            if (z.roles.cache.has(roleSilver.id)) { return } else {
-                                if (z.roles.cache.has(roleGold.id)) { z.roles.remove(roleGold) }
-                                if (z.roles.cache.has(roleBronze.id)) { z.roles.remove(roleBronze) }
-                                z.roles.add(roleSilver)
-                            }
-                        }
-                        if (data.global.rank.rankName === "Bronze") {
-                            if (z.roles.cache.has(roleBronze.id)) { return } else {
-                                if (z.roles.cache.has(roleSilver.id)) { z.roles.remove(roleSilver) }
-                                z.roles.add(roleBronze)
-                            }
-                        }
+                        const q2 = query(collection(db, "users"))
+                        const querySnapshot = await getDocs(q2);
+                        querySnapshot.forEach(async (doc2) => {
+                            let data = doc2.data()
+                            let z = x.members.cache.get(doc2.id)
+                            if (!z) { return }
+                            let url = `https://api.mozambiquehe.re/bridge?version=5&platform=${data.platform}&player=${data.username}&auth=${process.env.auth}`
+                            fetch(url)
+                                .then(res => res.json())
+                                .then(async data => {
+                                    if (!data.global) { return }
+                                    if (data.error) { return }
+                                    if (data.Error) { return }
+                                    if (data.global.rank.rankName === "Predator") {
+                                        if (z.roles.cache.has(rolePred.id)) { return } else {
+                                            if (z.roles.cache.has(roleMasters.id)) { z.roles.remove(roleMasters) }
+                                            z.roles.add(rolePred)
+                                        }
+                                    }
+                                    if (data.global.rank.rankName === "Masters") {
+                                        if (z.roles.cache.has(roleMasters.id)) { return } else {
+                                            if (z.roles.cache.has(rolePred.id)) { z.roles.remove(rolePred) }
+                                            if (z.roles.cache.has(roleDiamond.id)) { z.roles.remove(roleDiamond) }
+                                            z.roles.add(roleMasters)
+                                        }
+                                    }
+                                    if (data.global.rank.rankName === "Diamond") {
+                                        if (z.roles.cache.has(roleDiamond.id)) { return } else {
+                                            if (z.roles.cache.has(roleMasters.id)) { z.roles.remove(roleMasters) }
+                                            if (z.roles.cache.has(rolePlatinum.id)) { z.roles.remove(rolePlatinum) }
+                                            z.roles.add(roleDiamond)
+                                        }
+                                    }
+                                    if (data.global.rank.rankName === "Platinum") {
+                                        if (z.roles.cache.has(rolePlatinum.id)) { return } else {
+                                            if (z.roles.cache.has(roleDiamond.id)) { z.roles.remove(roleDiamond.id) }
+                                            if (z.roles.cache.has(roleGold.id)) { z.roles.remove(roleGold) }
+                                            z.roles.add(rolePlatinum)
+                                        }
+                                    }
+                                    if (data.global.rank.rankName === "Gold") {
+                                        if (z.roles.cache.has(roleGold.id)) { return } else {
+                                            if (z.roles.cache.has(rolePlatinum.id)) { z.roles.remove(rolePlatinum) }
+                                            if (z.roles.cache.has(roleSilver.id)) { z.roles.remove(roleSilver) }
+                                            z.roles.add(roleGold)
+                                        }
+                                    }
+                                    if (data.global.rank.rankName === "Silver") {
+                                        if (z.roles.cache.has(roleSilver.id)) { return } else {
+                                            if (z.roles.cache.has(roleGold.id)) { z.roles.remove(roleGold) }
+                                            if (z.roles.cache.has(roleBronze.id)) { z.roles.remove(roleBronze) }
+                                            z.roles.add(roleSilver)
+                                        }
+                                    }
+                                    if (data.global.rank.rankName === "Bronze") {
+                                        if (z.roles.cache.has(roleBronze.id)) { return } else {
+                                            if (z.roles.cache.has(roleSilver.id)) { z.roles.remove(roleSilver) }
+                                            z.roles.add(roleBronze)
+                                        }
+                                    }
 
-                    })
+                                })
 
-            })
+                        })
+                    }
+                }
+            }
         }
     });
 })
