@@ -280,75 +280,75 @@ cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 0-23 1-31 * *', async () => {
 
 
 
-cron.schedule('* 6 1-31 * *', async () => {
-    var url = `https://api.mozambiquehe.re/predator?auth=${process.env.auth}`
-    fetch(url)
-        .then(res => res.json())
-        .then(async data => {
-            const firebase = require('firebase/app')
-            const { getFirestore, collection, doc, setDoc, getDoc } = require('firebase/firestore')
-            const firebaseConfig = {
-                apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",
-                authDomain: "apex-discordbot.firebaseapp.com",
-                databaseURL: "https://apex-discordbot-default-rtdb.europe-west1.firebasedatabase.app",
-                projectId: "apex-discordbot",
-                storageBucket: "apex-discordbot.appspot.com",
-                messagingSenderId: "985625049043",
-                appId: "1:985625049043:web:0401c7b6c4ceea7e516126",
-                measurementId: "G-JSY0XDKC14"
-            };
+// cron.schedule('* 6 1-31 * *', async () => {
+//     var url = `https://api.mozambiquehe.re/predator?auth=${process.env.auth}`
+//     fetch(url)
+//         .then(res => res.json())
+//         .then(async data => {
+//             const firebase = require('firebase/app')
+//             const { getFirestore, collection, doc, setDoc, getDoc } = require('firebase/firestore')
+//             const firebaseConfig = {
+//                 apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",
+//                 authDomain: "apex-discordbot.firebaseapp.com",
+//                 databaseURL: "https://apex-discordbot-default-rtdb.europe-west1.firebasedatabase.app",
+//                 projectId: "apex-discordbot",
+//                 storageBucket: "apex-discordbot.appspot.com",
+//                 messagingSenderId: "985625049043",
+//                 appId: "1:985625049043:web:0401c7b6c4ceea7e516126",
+//                 measurementId: "G-JSY0XDKC14"
+//             };
 
 
-            const app = firebase.initializeApp(firebaseConfig);
-            const db = getFirestore(app)
+//             const app = firebase.initializeApp(firebaseConfig);
+//             const db = getFirestore(app)
 
-            const docRef1 = collection(db, 'stats')
+//             const docRef1 = collection(db, 'stats')
 
-            const docRef2 = doc(db, 'stats', "BR")
-            const docRef3 = doc(db, 'stats', "AP")
+//             const docRef2 = doc(db, 'stats', "BR")
+//             const docRef3 = doc(db, 'stats', "AP")
 
-            const docSnap = await getDoc(docRef2)
-            const docData = docSnap.data()
-            const PC_DIFF = data.RP.PC.val - docData.PC
-            const PSN_DIFF = data.RP.PS4.val - docData.PSN
-            const XBOX_DIFF = data.RP.X1.val - docData.XBOX
-            const SWITCH_DIFF = data.RP.SWITCH.val - docData.SWITCH
+//             const docSnap = await getDoc(docRef2)
+//             const docData = docSnap.data()
+//             const PC_DIFF = data.RP.PC.val - docData.PC
+//             const PSN_DIFF = data.RP.PS4.val - docData.PSN
+//             const XBOX_DIFF = data.RP.X1.val - docData.XBOX
+//             const SWITCH_DIFF = data.RP.SWITCH.val - docData.SWITCH
 
-            const docSnap_AP = await getDoc(docRef3)
-            const docData_AP = docSnap_AP.data()
-            const PC_DIFF_AP = data.AP.PC.val - docData_AP.PC
-            const PSN_DIFF_AP = data.AP.PS4.val - docData_AP.PSN
-            const XBOX_DIFF_AP = data.AP.X1.val - docData_AP.XBOX
-            const SWITCH_DIFF_AP = data.AP.SWITCH.val - docData_AP.SWITCH
+//             const docSnap_AP = await getDoc(docRef3)
+//             const docData_AP = docSnap_AP.data()
+//             const PC_DIFF_AP = data.AP.PC.val - docData_AP.PC
+//             const PSN_DIFF_AP = data.AP.PS4.val - docData_AP.PSN
+//             const XBOX_DIFF_AP = data.AP.X1.val - docData_AP.XBOX
+//             const SWITCH_DIFF_AP = data.AP.SWITCH.val - docData_AP.SWITCH
 
-            await setDoc(doc(docRef1, "BR"), {
-                PC: data.RP.PC.val,
-                PSN: data.RP.PS4.val,
-                XBOX: data.RP.X1.val,
-                SWITCH: data.RP.SWITCH.val
-            });
-            await setDoc(doc(docRef1, "AP"), {
-                PC: data.AP.PC.val,
-                PSN: data.AP.PS4.val,
-                XBOX: data.AP.X1.val,
-                SWITCH: data.AP.SWITCH.val
-            });
+//             await setDoc(doc(docRef1, "BR"), {
+//                 PC: data.RP.PC.val,
+//                 PSN: data.RP.PS4.val,
+//                 XBOX: data.RP.X1.val,
+//                 SWITCH: data.RP.SWITCH.val
+//             });
+//             await setDoc(doc(docRef1, "AP"), {
+//                 PC: data.AP.PC.val,
+//                 PSN: data.AP.PS4.val,
+//                 XBOX: data.AP.X1.val,
+//                 SWITCH: data.AP.SWITCH.val
+//             });
 
-            await setDoc(doc(docRef1, "BR_DIFF"), {
-                PC: PC_DIFF,
-                PSN: PSN_DIFF,
-                XBOX: XBOX_DIFF,
-                SWITCH: SWITCH_DIFF
-            });
-            await setDoc(doc(docRef1, "AP_DIFF"), {
-                PC: PC_DIFF_AP,
-                PSN: PSN_DIFF_AP,
-                XBOX: XBOX_DIFF_AP,
-                SWITCH: SWITCH_DIFF_AP
-            });
-            console.log("UPDATE RANK POINTS")
-        })
-})
+//             await setDoc(doc(docRef1, "BR_DIFF"), {
+//                 PC: PC_DIFF,
+//                 PSN: PSN_DIFF,
+//                 XBOX: XBOX_DIFF,
+//                 SWITCH: SWITCH_DIFF
+//             });
+//             await setDoc(doc(docRef1, "AP_DIFF"), {
+//                 PC: PC_DIFF_AP,
+//                 PSN: PSN_DIFF_AP,
+//                 XBOX: XBOX_DIFF_AP,
+//                 SWITCH: SWITCH_DIFF_AP
+//             });
+//             console.log("UPDATE RANK POINTS")
+//         })
+// })
 
 
 client.login(process.env.token);
