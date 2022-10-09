@@ -61,7 +61,7 @@ module.exports = {
                             url2 = `https://apex.tracker.gg/apex/profile/${platform2}/${data.global.name}/overview`
                             url2 = url2.replace(/ /g, '')
                         } catch { }
-                        console.log(url2)
+                        
                         try {
                             if (data.Error) {
                                 var botEmbed = new discord.MessageEmbed()

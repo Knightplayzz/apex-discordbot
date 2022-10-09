@@ -2,6 +2,7 @@ const { Client, Intents, Collection, MessageEmbed, MessageActionRow, MessageButt
 const fetch = require('node-fetch')
 const discord = require("discord.js")
 const fs = require("fs");
+const cron = require('node-cron');
 const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
@@ -109,7 +110,7 @@ client.on('interactionCreate', async interaction => {
         }
     }
 })
-client.on("guildCreate", guild2 => {
+client.on("guildCreate", () => {
     let guild = client.guilds.cache.get("1018244995792257114");
     let channel = guild.channels.cache.get("1024393334007009391")
     let x = client.guilds.cache.size
@@ -121,7 +122,6 @@ client.on("guildDelete", guild2 => {
     let x = client.guilds.cache.size
     channel.setName("Servers Active: " + x.toString())
 })
-var cron = require('node-cron');
 
 cron.schedule('* 6 1-31 * *', () => {
     var guildName = client.guilds.cache.find(guild => guild.id === "1018244995792257114")
@@ -136,8 +136,10 @@ cron.schedule('* 6 1-31 * *', () => {
         permissions: role1.permissions,
         mentionable: role1.mentionable
 
-    }).then(x => {
-        role1.delete()
+    }).then(() => {
+        try{
+            role1.delete()
+        }catch(err){console.log(err)} 
     })
 });
 
