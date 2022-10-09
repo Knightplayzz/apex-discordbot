@@ -44,10 +44,20 @@ module.exports = {
     async execute(client, interaction) {
 
         var platform = interaction.options.get('platform').value
+        var platform2 = ''
 
-        if (platform === 'Origin') { platform = 'PC' }
-        if (platform === 'Playstation') { platform = 'PS4' }
-        if (platform === 'Xbox') { platform = 'X1' }
+        if (platform === 'Origin') {
+            platform = 'PC'
+            platform2 = 'origin'
+        }
+        if (platform === 'Playstation') {
+            platform = 'PS4'
+            platform2 = 'psn'
+        }
+        if (platform === 'Xbox') {
+            platform = 'X1'
+            platform2 = 'xbl'
+        }
 
         const player = interaction.options.getString('username')
 
