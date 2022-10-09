@@ -68,6 +68,7 @@ module.exports = {
             interaction.reply({ embeds: [botEmbed], ephemeral: true })
         } else {
             var url = `https://api.mozambiquehe.re/bridge?version=5&platform=${platform}&player=${player}&auth=${process.env.auth}`
+            url.replace(/ /g, '')
             try {
                 fetch(url)
                     .then(res => res.json())

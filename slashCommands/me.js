@@ -49,6 +49,8 @@ module.exports = {
                 platform3 = 'Xbox'
             }
             var url = `https://api.mozambiquehe.re/bridge?version=5&platform=${docData.platform}&player=${docData.username}&auth=${process.env.auth}`
+            var url = url.replace(/ /g, '')
+            
             try {
                 fetch(url)
                     .then(res => res.json())
