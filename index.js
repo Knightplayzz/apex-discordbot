@@ -93,6 +93,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.token);
 })()
 //interact
 client.on('interactionCreate', async interaction => {
+
     if (interaction.isCommand) {
         const slashCommand = client.slashCommands.get(interaction.commandName);
         if (!slashCommand) return;
@@ -146,7 +147,7 @@ cron.schedule('* 6 1-31 * *', () => {
 
 
 
-cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 0-23 1-31 * *', async () => {
+cron.schedule('* 0,12 1-31 * *', async () => {
     //console.log("AUTOROLE UPDATE")
     const firebase = require('firebase/app')
     const { getFirestore, collection, getDocs, query, } = require('firebase/firestore')
@@ -261,7 +262,6 @@ cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 0-23 1-31 * *', async () => {
                                     }
 
                                 })
-
                         })
                     }
                 }

@@ -39,8 +39,7 @@ module.exports = {
 
     async execute(client, interaction) {
 
-         if (!interaction.guild.me.permissions.has("ADMINISTRATOR")){return interaction.reply({content: "The bot doesn't have the permission to do this! \n Invite the bot again by pressing [here](https://discord.com/api/oauth2/authorize?client_id=1014207340188270673&permissions=8&scope=bot%20applications.commands)"})}
-
+        if (!interaction.guild.me.permissions.has("ADMINISTRATOR")) { return interaction.reply({ content: "The bot doesn't have the permission to do this! \n Invite the bot again by pressing [here](https://discord.com/api/oauth2/authorize?client_id=1014207340188270673&permissions=8&scope=bot%20applications.commands)" }) }
         var onOrOff = interaction.options.get('autorole').value
         var on = false
         var selected = false
@@ -50,44 +49,79 @@ module.exports = {
 
         const docRef2 = doc(db, 'servers', interaction.member.guild.id)
         const docSnap = await getDoc(docRef2)
+
         if (docSnap.exists()) {
             const docData = docSnap.data()
-            if (selected === true) {
-                var x = "off"
-                if (docData.on === true) { x = "on" }
-                var botEmbed = new discord.MessageEmbed()
-                    .setTitle(`${client.user.username} :heart: `)
-                    .setDescription(`Currently: ${x}`)
-                    .setFooter(`${client.user.username} ❤️`)
-                    .setTimestamp()
-                return interaction.reply({ embeds: [botEmbed], ephemeral: true })
-            } else {
-                var x = "off"
-                if (onOrOff === 'enable') { x = "on" }
-                const citiesRef = collection(db, "servers");
-                await setDoc(doc(citiesRef, interaction.member.guild.id), { on: on });
-                var botEmbed = new discord.MessageEmbed()
-                    .setTitle(`${client.user.username} :heart: `)
-                    .setDescription(`Changed to: ${x}`)
-                    .setFooter(`${client.user.username} ❤️`)
-                    .setTimestamp()
-                return interaction.reply({ embeds: [botEmbed], ephemeral: true })
-
+            if (on === false) {
+                deleteDoc(docRef2).then(() => {
+                    var botEmbed = new discord.MessageEmbed()
+                        .setTitle(`${client.user.username} :heart: `)
+                        .setDescription(`Changed to: disabled`)
+                        .setFooter(`${client.user.username} ❤️`)
+                        .setTimestamp()
+                        .setColor("GREEN")
+                    interaction.reply({ embeds: [botEmbed], ephemeral: true })
+                })
             }
+            if (on === true) {
+                var botEmbed = new discord.MessageEmbed()
+                    .setTitle(`${client.user.username} :heart: `)
+                    .setDescription(`Changed to: enabled`)
+                    .setFooter(`${client.user.username} ❤️`)
+                    .setTimestamp()
+                    .setColor("GREEN")
+                interaction.reply({ embeds: [botEmbed], ephemeral: true })
+            }
+            if (selected === true) {
+                var botEmbed = new discord.MessageEmbed()
+                    .setTitle(`${client.user.username} :heart: `)
+                    .setDescription(`Currently: enabled`)
+                    .setFooter(`${client.user.username} ❤️`)
+                    .setTimestamp()
+                    .setColor("GREEN")
+                interaction.reply({ embeds: [botEmbed], ephemeral: true })
+            }
+
+
+
         } else {
-            var x = "off"
-            if (onOrOff === 'enable') { x = "on" }
 
-            var botEmbed = new discord.MessageEmbed()
-                .setTitle(`${client.user.username} :heart: `)
-                .setDescription(`Changed to: ${x}`)
-                .setFooter(`${client.user.username} ❤️`)
-                .setTimestamp()
-            interaction.reply({ embeds: [botEmbed], ephemeral: true })
 
-            const citiesRef = collection(db, "servers");
-            await setDoc(doc(citiesRef, interaction.member.guild.id), { on: on });
+
+            if (on === false) {
+                var botEmbed = new discord.MessageEmbed()
+                    .setTitle(`${client.user.username} :heart: `)
+                    .setDescription(`Changed to: disabled`)
+                    .setFooter(`${client.user.username} ❤️`)
+                    .setTimestamp()
+                    .setColor("GREEN")
+                interaction.reply({ embeds: [botEmbed], ephemeral: true })
+            }
+            if (on === true) {
+                const citiesRef = collection(db, "servers");
+                await setDoc(doc(citiesRef, interaction.member.guild.id), { on: true }).then(() => {
+                    var botEmbed = new discord.MessageEmbed()
+                        .setTitle(`${client.user.username} :heart: `)
+                        .setDescription(`Changed to: enabled`)
+                        .setFooter(`${client.user.username} ❤️`)
+                        .setTimestamp()
+                        .setColor("GREEN")
+                    interaction.reply({ embeds: [botEmbed], ephemeral: true })
+                });
+            }
+            if (selected === true) {
+                var botEmbed = new discord.MessageEmbed()
+                    .setTitle(`${client.user.username} :heart: `)
+                    .setDescription(`Currently: disabled`)
+                    .setFooter(`${client.user.username} ❤️`)
+                    .setTimestamp()
+                    .setColor("GREEN")
+                interaction.reply({ embeds: [botEmbed], ephemeral: true })
+            }
         }
+
+
+
 
     }
 }
