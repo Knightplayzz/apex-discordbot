@@ -28,7 +28,7 @@ for (const fileSlash of commandSlashFiles) {
 
     client.slashCommands.set(commandSlash.data.name, commandSlash);
     slashCommands.push(commandSlash.data.toJSON());
-    console.log(`File Loaded | ${fileSlash}.js`);
+    console.log(`File Loaded | ${fileSlash}`);
 };
 
 //presence
