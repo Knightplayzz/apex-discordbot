@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 const { PermissionFlagsBits } = require('discord-api-types/v9')
 const discord = require("discord.js")
 const firebase = require('firebase/app')
-const { getFirestore, collection, getDoc, query, } = require('firebase/firestore')
+const { getFirestore, collection, getDoc, query, doc } = require('firebase/firestore')
 const firebaseConfig = {
     apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",
     authDomain: "apex-discordbot.firebaseapp.com",
@@ -62,7 +62,7 @@ module.exports = {
                     const docSnap = await getDoc(docRef2)
 
                     if (docSnap.exists()) {
-                        let data = doc2.data()
+                        let data = docSnap.data()
                         let url = `https://api.mozambiquehe.re/bridge?version=5&platform=${data.platform}&player=${data.username}&auth=${process.env.auth}`
                         fetch(url)
                             .then(res => res.json())
