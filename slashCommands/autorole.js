@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 const { PermissionFlagsBits } = require('discord-api-types/v9')
 const discord = require("discord.js")
 const firebase = require('firebase/app')
-const { getFirestore, collection, doc, setDoc, getDoc } = require('firebase/firestore')
+const { getFirestore, collection, doc, setDoc, getDoc, deleteDoc } = require('firebase/firestore')
 const firebaseConfig = {
     apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",
     authDomain: "apex-discordbot.firebaseapp.com",
