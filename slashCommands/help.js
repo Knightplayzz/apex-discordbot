@@ -25,6 +25,7 @@ module.exports = {
                 "\n\n:game_die: Fun:"+
                 "\n``/who`` - Picks a random legend to play in-game."+
                 "\n``/autorole`` - Gives a role with the apex rank of the user."+
+                "\n``/autorole-refresh`` - Mannually resh your rank role."+
 
                 "\n\n:pencil: Apex Statistics:"+
                 "\n``/stats`` - Shows Apex statistics."+
