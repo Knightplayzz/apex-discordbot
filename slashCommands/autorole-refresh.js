@@ -22,18 +22,8 @@ module.exports = {
         .setName('autorole-refresh')
         .setDescription('Mannually resh your rank role.')
         //.setDefaultMemberPermissions(PermissionFlagsBits.KickMembers | PermissionFlagsBits.BanMembers)
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
-        .addStringOption(option =>
-            option.setName('autorole')
-                .setDescription('Enable or Disable autorole.')
-                .setRequired(true)
-                .addChoices(
-                    { name: 'enable', value: 'enable' },
-                    { name: 'disable', value: 'disable' },
-                    { name: 'current', value: 'selected' }
-                )),
-
-
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
+        
     async execute(client, interaction) {
 
         const docRef2 = doc(db, 'servers', interaction.guild.id)
