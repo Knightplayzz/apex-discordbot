@@ -51,8 +51,7 @@ module.exports = {
         const docSnap = await getDoc(docRef2)
 
         if (docSnap.exists()) {
-            const docData = docSnap.data()
-            if (on === false) {
+            if (on === false && selected === false) {
                 deleteDoc(docRef2).then(() => {
                     var botEmbed = new discord.MessageEmbed()
                         .setTitle(`${client.user.username} :heart: `)
@@ -60,7 +59,7 @@ module.exports = {
                         .setFooter(`${client.user.username} ❤️`)
                         .setTimestamp()
                         .setColor("GREEN")
-                    interaction.reply({ embeds: [botEmbed], ephemeral: true })
+                    return interaction.reply({ embeds: [botEmbed], ephemeral: true })
                 })
             }
             if (on === true) {
@@ -70,7 +69,7 @@ module.exports = {
                     .setFooter(`${client.user.username} ❤️`)
                     .setTimestamp()
                     .setColor("GREEN")
-                interaction.reply({ embeds: [botEmbed], ephemeral: true })
+                return interaction.reply({ embeds: [botEmbed], ephemeral: true })
             }
             if (selected === true) {
                 var botEmbed = new discord.MessageEmbed()
@@ -79,7 +78,7 @@ module.exports = {
                     .setFooter(`${client.user.username} ❤️`)
                     .setTimestamp()
                     .setColor("GREEN")
-                interaction.reply({ embeds: [botEmbed], ephemeral: true })
+                return interaction.reply({ embeds: [botEmbed], ephemeral: true })
             }
 
 
@@ -88,14 +87,14 @@ module.exports = {
 
 
 
-            if (on === false) {
+            if (on === false && selected === false) {
                 var botEmbed = new discord.MessageEmbed()
                     .setTitle(`${client.user.username} :heart: `)
                     .setDescription(`Changed to: disabled`)
                     .setFooter(`${client.user.username} ❤️`)
                     .setTimestamp()
                     .setColor("GREEN")
-                interaction.reply({ embeds: [botEmbed], ephemeral: true })
+                return interaction.reply({ embeds: [botEmbed], ephemeral: true })
             }
             if (on === true) {
                 const citiesRef = collection(db, "servers");
@@ -106,7 +105,7 @@ module.exports = {
                         .setFooter(`${client.user.username} ❤️`)
                         .setTimestamp()
                         .setColor("GREEN")
-                    interaction.reply({ embeds: [botEmbed], ephemeral: true })
+                    return interaction.reply({ embeds: [botEmbed], ephemeral: true })
                 });
             }
             if (selected === true) {
@@ -116,7 +115,7 @@ module.exports = {
                     .setFooter(`${client.user.username} ❤️`)
                     .setTimestamp()
                     .setColor("GREEN")
-                interaction.reply({ embeds: [botEmbed], ephemeral: true })
+                return interaction.reply({ embeds: [botEmbed], ephemeral: true })
             }
         }
 
