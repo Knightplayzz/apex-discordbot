@@ -25,12 +25,13 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 
     async execute(client, interaction) {
-
+        console.log('ACTIVATO')
         const docRef2 = doc(db, 'servers', interaction.guild.id)
         const docSnap = await getDoc(docRef2)
 
         if (docSnap.exists()) {
             if (!interaction.guild.me.permissions.has("ADMINISTRATOR")) { return interaction.reply({ content: "The bot doesn't have the permission to do this! \n Invite the bot again by pressing [here](https://discord.com/api/oauth2/authorize?client_id=1014207340188270673&permissions=8&scope=bot%20applications.commands)" }) } else {
+                console.log('HAS PERMS')    
                 var rolePred = interaction.guild.roles.cache.find(role => role.name === "Predator");
                 var roleMasters = interaction.guild.roles.cache.find(role => role.name === "Masters");
                 var roleDiamond = interaction.guild.roles.cache.find(role => role.name === "Diamond");
@@ -60,11 +61,12 @@ module.exports = {
                     console.log("Can't acces role in guild" + x.name)
                     return interaction.reply({ content: "The Apex Bot role must be higher that the ranked roles!" })
                 } else {
-
+                    console.log('GETTING USER')
                     const docRef2 = doc(db, 'users', interaction.user.id)
                     const docSnap = await getDoc(docRef2)
 
                     if (docSnap.exists()) {
+                        console.log('USER EXIsTS')
                         let data = docSnap.data()
                         let url = `https://api.mozambiquehe.re/bridge?version=5&platform=${data.platform}&player=${data.username}&auth=${process.env.auth}`
                         fetch(url)
@@ -234,7 +236,7 @@ module.exports = {
                                     }
                                 }
                             })
-                    } else { return }
+                    } else { return interaction.reply({ content: "You need to link you account first!" }) }
                 }
             }
         } else { return interaction.reply({ content: "This feature is off in this server!" }) }
