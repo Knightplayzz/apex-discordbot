@@ -15,6 +15,7 @@ module.exports = {
                 `:video_game: **Bot Commands:**`+
                 "\n``/help`` - Bot Commands."+
                 "\n``/vote`` - Vote for the bot and receive a reward."+
+                "\n``/invite`` - Invite the bot to your server!"+
                 "\n``/map`` - Current and next BR map."+
                 "\n``/arena`` - Current and next arena map."+
                 "\n``/rankedarena`` - Current and next ranked arena map."+
