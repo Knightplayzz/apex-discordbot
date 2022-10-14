@@ -13,7 +13,7 @@ module.exports = {
         var botEmbed = new discord.MessageEmbed()
             .setTitle(`${client.user.username} :heart: `)
             .setDescription(
-                `:x: Maintenace :x:`+
+                `:x: Maintenance :x:`+
                 `\nThis will be added very soon.`+
                 `\nFor shop [click here](https://apexlegendsstatus.com/store)`
                 )

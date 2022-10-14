@@ -16,9 +16,9 @@ module.exports = {
         var botEmbed = new discord.MessageEmbed()
             .setTitle(`${client.user.username} :heart: `)
             .setDescription(
-                `:x: Maintenace :x:`+
+                `:x: Maintenance :x:`+
                 `\nThis will be added very soon.`+
-                `\nFor learderboard [click here](https://apexlegendsstatus.com/leaderboard/Global/rankScore/1)`
+                `\nFor leaderboard [click here](https://apexlegendsstatus.com/leaderboard/Global/rankScore/1)`
                 )
             .setFooter(`${client.user.username} ❤️`)
             .setTimestamp()
