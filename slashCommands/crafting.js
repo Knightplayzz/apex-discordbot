@@ -59,7 +59,7 @@ module.exports = {
               var attachment = new MessageAttachment(canvas.toBuffer(), 'hello.png')
                 
                 var botEmbed = new discord.MessageEmbed()
-                    .setTitle("Crafing Cycle")
+                    .setTitle("Crafting Cycle")
                     .setDescription(
                         `<t:${data[0].end}:R>`+
                         `\n<t:${data[1].end}:R>`

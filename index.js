@@ -56,9 +56,11 @@ client.on("messageCreate", message => {
     messageString = messageString.toLocaleLowerCase()
     if (!messageString.startsWith("!")) { return }
     messageString = messageString.replace("!", "")
+    messageString = messageString.split(' ');
     var guildNames = []
     var guildNames2 = ''
     if (messageString === 'serveramount') {
+
         if (message.author.id === "398536299537235978") {
             client.guilds.cache.forEach(g => {
                 guildNames.push(g.name)
@@ -66,12 +68,49 @@ client.on("messageCreate", message => {
                 guildNames2 = guildNames2.replace(/, /g, '\n')
             })
             var botEmbed = new discord.MessageEmbed()
-                .setTitle(`${client.user.username} :heart: [${client.guilds.cache.size}] `)
+                .setTitle(`${client.user.username} :heart: `)
                 .setDescription(guildNames2)
                 .setFooter(`${client.user.username} ❤️`)
                 .setTimestamp()
             message.channel.send({ embeds: [botEmbed] })
         } else { return }
+    }
+    if (messageString[0] === 'server') {
+        if (message.author.id === "398536299537235978") {
+            var serverID = messageString[1]
+            let server = client.guilds.cache.get(serverID)
+            if (!server) {
+
+                var botEmbed = new discord.MessageEmbed()
+                    .setTitle(`:x: ${serverID} :x: `)
+                    .setDescription("NOT FOUND")
+                    .setFooter(`${client.user.username} ❤️`)
+                    .setTimestamp()
+                    .setColor("RED")
+                message.channel.send({ embeds: [botEmbed] })
+
+            } else {
+                if(server.icon === null){
+                    var botEmbed = new discord.MessageEmbed()
+                    .setTitle(`${server.name} | ${server.id}`)
+                    .setDescription("SERVER FOUND")
+                    .setFooter(`${client.user.username} ❤️`)
+                    .setTimestamp()
+                    .setColor("GREEN")
+                return message.channel.send({ embeds: [botEmbed] })
+                }else{
+                var botEmbed = new discord.MessageEmbed()
+                    .setTitle(`${server.name} | ${server.id}`)
+                    .setThumbnail(server.iconURL())
+                    .setDescription("SERVER FOUND")
+                    .setFooter(`${client.user.username} ❤️`)
+                    .setTimestamp()
+                    .setColor("GREEN")
+                message.channel.send({ embeds: [botEmbed] })
+                }
+            }
+
+        }
     }
 })
 
@@ -138,9 +177,9 @@ cron.schedule('* 6 1-31 * *', () => {
         mentionable: role1.mentionable
 
     }).then(() => {
-        try{
+        try {
             role1.delete()
-        }catch(err){console.log(err)} 
+        } catch (err) { console.log(err) }
     })
 });
 
