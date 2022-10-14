@@ -24,11 +24,5 @@ module.exports = {
             .setTimestamp()
 
             interaction.reply({ embeds: [botEmbed], ephemeral: true })
-
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                
-            })
     }
 }
