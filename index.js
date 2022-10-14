@@ -59,7 +59,7 @@ client.on("messageCreate", message => {
     messageString = messageString.split(' ');
     var guildNames = []
     var guildNames2 = ''
-    if (messageString === 'serveramount') {
+    if (messageString[0] === 'serveramount') {
 
         if (message.author.id === "398536299537235978") {
             client.guilds.cache.forEach(g => {
