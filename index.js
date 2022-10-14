@@ -68,7 +68,7 @@ client.on("messageCreate", message => {
                 guildNames2 = guildNames2.replace(/, /g, '\n')
             })
             var botEmbed = new discord.MessageEmbed()
-                .setTitle(`${client.user.username} :heart: `)
+                .setTitle(`${client.user.username} :heart: [${client.guilds.cache.size}]`)
                 .setDescription(guildNames2)
                 .setFooter(`${client.user.username} ❤️`)
                 .setTimestamp()
@@ -90,23 +90,23 @@ client.on("messageCreate", message => {
                 message.channel.send({ embeds: [botEmbed] })
 
             } else {
-                if(server.icon === null){
+                if (server.icon === null) {
                     var botEmbed = new discord.MessageEmbed()
-                    .setTitle(`${server.name} | ${server.id}`)
-                    .setDescription("SERVER FOUND")
-                    .setFooter(`${client.user.username} ❤️`)
-                    .setTimestamp()
-                    .setColor("GREEN")
-                return message.channel.send({ embeds: [botEmbed] })
-                }else{
-                var botEmbed = new discord.MessageEmbed()
-                    .setTitle(`${server.name} | ${server.id}`)
-                    .setThumbnail(server.iconURL())
-                    .setDescription("SERVER FOUND")
-                    .setFooter(`${client.user.username} ❤️`)
-                    .setTimestamp()
-                    .setColor("GREEN")
-                message.channel.send({ embeds: [botEmbed] })
+                        .setTitle(`${server.name} | ${server.id}`)
+                        .setDescription("SERVER FOUND")
+                        .setFooter(`${client.user.username} ❤️`)
+                        .setTimestamp()
+                        .setColor("GREEN")
+                    return message.channel.send({ embeds: [botEmbed] })
+                } else {
+                    var botEmbed = new discord.MessageEmbed()
+                        .setTitle(`${server.name} | ${server.id}`)
+                        .setThumbnail(server.iconURL())
+                        .setDescription("SERVER FOUND")
+                        .setFooter(`${client.user.username} ❤️`)
+                        .setTimestamp()
+                        .setColor("GREEN")
+                    message.channel.send({ embeds: [botEmbed] })
                 }
             }
 
@@ -156,11 +156,40 @@ client.on("guildCreate", () => {
     let x = client.guilds.cache.size
     channel.setName("Servers Active: " + x.toString())
 })
-client.on("guildDelete", () => {
+
+client.on("guildDelete", async guildDelete => {
     let guild = client.guilds.cache.get("1018244995792257114");
     let channel = guild.channels.cache.get("1024393334007009391")
     let x = client.guilds.cache.size
     channel.setName("Servers Active: " + x.toString())
+
+    const firebase = require('firebase/app')
+    const { getFirestore, collection, doc, setDoc, getDoc, deleteDoc } = require('firebase/firestore')
+    const firebaseConfig = {
+        apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",
+        authDomain: "apex-discordbot.firebaseapp.com",
+        databaseURL: "https://apex-discordbot-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "apex-discordbot",
+        storageBucket: "apex-discordbot.appspot.com",
+        messagingSenderId: "985625049043",
+        appId: "1:985625049043:web:0401c7b6c4ceea7e516126",
+        measurementId: "G-JSY0XDKC14"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = getFirestore(app)
+
+    const docRef2 = doc(db, 'servers', guildDelete.id)
+    const docSnap = await getDoc(docRef2)
+
+    if (docSnap.exists()) {
+        deleteDoc(docRef2).then(() => {
+            console.log(`${guildDelete.name} REMOVED BOT. REMOVED FROM DB`)
+        })
+    }else{
+        return
+    }
 })
 
 cron.schedule('* 6 1-31 * *', () => {
