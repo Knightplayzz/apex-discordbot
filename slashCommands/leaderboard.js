@@ -6,7 +6,7 @@ const discord = require("discord.js")
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('learderboard')
+        .setName('leaderboard')
         .setDescription('Shows the current in-game map.'),
 
     async execute(client, interaction) {

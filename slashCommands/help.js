@@ -29,7 +29,7 @@ module.exports = {
 
                 "\n\n:pencil: Apex Statistics:"+
                 "\n``/stats`` - Shows Apex statistics."+
-                "\n``/pred`` - Amount of points for Apex Predator."+
+                "\n``/predator`` - Amount of points for Apex Predator."+
                 "\n``/link`` - Link your account to your Apex username."+
                 "\n``/unlink`` - Unlink your account from your Apex username."+
                 "\n``/me`` - Shows your own stats if an account has been linked."+
