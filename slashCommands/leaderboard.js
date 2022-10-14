@@ -17,7 +17,7 @@ module.exports = {
             .setTitle(`${client.user.username} :heart: `)
             .setDescription(
                 `:x: Maintenace :x:`+
-                `\nThis will be added verry soon.`+
+                `\nThis will be added very soon.`+
                 `\nFor learderboard [click here](https://apexlegendsstatus.com/leaderboard/Global/rankScore/1)`
                 )
             .setFooter(`${client.user.username} ❤️`)

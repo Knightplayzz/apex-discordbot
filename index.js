@@ -32,7 +32,7 @@ for (const fileSlash of commandSlashFiles) {
 };
 
 //presence
-client.once("ready", async message => {
+client.once("ready", async () => {
     console.log(`${client.user.username} is online.`);
     var url = `https://api.mozambiquehe.re/maprotation?auth=${process.env.auth}`
     setInterval(function () {
@@ -117,7 +117,7 @@ client.on("guildCreate", () => {
     let x = client.guilds.cache.size
     channel.setName("Servers Active: " + x.toString())
 })
-client.on("guildDelete", guild2 => {
+client.on("guildDelete", () => {
     let guild = client.guilds.cache.get("1018244995792257114");
     let channel = guild.channels.cache.get("1024393334007009391")
     let x = client.guilds.cache.size
@@ -170,7 +170,7 @@ cron.schedule('* 0,12 1-31 * *', async () => {
         var data2 = fG.data()
         if (data2.on === false) { return } else {
             let x = client.guilds.cache.get(fG.id)
-            if (!x) { return console.log("NO GUILD FOUND") } else {
+            if (!x) { return console.log("NO GUILD FOUND -1") } else {
                 //console.log(x.name)
                 if (!x.me.permissions.has("ADMINISTRATOR")) { return } else {
                     var rolePred = x.roles.cache.find(role => role.name === "Predator");
