@@ -12,7 +12,7 @@ module.exports = {
         var botEmbed = new discord.MessageEmbed()
             .setTitle(`${client.user.username} :heart: `)
             .setDescription(
-                `Thank you for invite ${client.user.username}`+
+                `Thank you for inviting ${client.user.username}`+
                 `\nClick [here](https://discord.com/api/oauth2/authorize?client_id=1014207340188270673&permissions=8&scope=bot%20applications.commands) to invite.`
                 )
             .setFooter(`${client.user.username} ❤️`)
