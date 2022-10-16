@@ -354,60 +354,45 @@ const timers = {};
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isSelectMenu()) {
+        timers[interaction.id] = setTimeout(() => {
+            interaction.editReply({ components: [] })
+        }, 10000);
         return;
     }
     if (interaction.customId === 'heirlooms') {
 
         const int = interaction
 
-        if (timers[int.message]) clearTimeout(timers[int.message]);
-        timers[int.message] = setTimeout(() => {
+        if (timers[interaction.message.interaction.id]) clearTimeout(timers[interaction.message.interaction.id]);
+        timers[interaction.message.interaction.id] = setTimeout(() => {
             int.editReply({ components: [] })
-            console.log("EXPSIRED")
         }, 10000);
 
         let legendImage = Number(interaction.values[0])
         legendImage--
 
         const nameArray = [
-            "Loba",
-            "Valkyrie",
-            "Crypto",
-            "Wattson",
-            "Rampart",
-            "Revenant",
-            "Bangalore",
-            "Gibraltar",
-            "Caustic",
-            "Mirage",
-            "Octane",
-            "Pathfinder",
-            "Lifeline",
-            "Bloodhound",
-            "Waith"
+            { name: "Loba", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/15112334/Loba-heirloom-1536x864.jpeg" },
+            { name: "Valkyrie", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133636/Valkyrie-heirloom-1536x865.jpeg" },
+            { name: "Crypto", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133723/Crypto-heirloom-1536x864.jpeg" },
+            { name: "Wattson", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133630/Wattson-heirloom-1536x865.jpeg" },
+            { name: "Rampart", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133644/Rampart-heirloom-1536x865.jpeg" },
+            { name: "Revenant", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133640/Revenant-heirloom-1536x865.jpeg" },
+            { name: "Bangalore", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14132411/Bangalore-heirloom-1536x864.jpeg" },
+            { name: "Gibraltar", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133716/Gibraltar-heirloom-1536x864.jpeg" },
+            { name: "Caustic", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133729/Caustic-heirloom-1536x864.jpeg" },
+            { name: "Mirage", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133703/Mirage-heirloom-1536x864.jpeg" },
+            { name: "Octane", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133657/Octane-heirloom-1536x865.jpeg" },
+            { name: "Pathfinder", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133651/Pathfinder-heirloom-1536x864.jpeg" },
+            { name: "Lifeline", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133710/Lifeline-heirloom-1536x864.jpeg" },
+            { name: "Bloodhound", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133737/Bloodhound-heirloom-1536x864.jpeg" },
+            { name: "Waith", url: "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133622/Wraith-heirloom-1536x865.jpeg" },
         ]
 
-        const array = [
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/15112334/Loba-heirloom-1536x864.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133636/Valkyrie-heirloom-1536x865.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133723/Crypto-heirloom-1536x864.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133630/Wattson-heirloom-1536x865.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133644/Rampart-heirloom-1536x865.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133640/Revenant-heirloom-1536x865.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14132411/Bangalore-heirloom-1536x864.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133716/Gibraltar-heirloom-1536x864.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133729/Caustic-heirloom-1536x864.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133703/Mirage-heirloom-1536x864.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133657/Octane-heirloom-1536x865.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133651/Pathfinder-heirloom-1536x864.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133710/Lifeline-heirloom-1536x864.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133737/Bloodhound-heirloom-1536x864.jpeg",
-            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133622/Wraith-heirloom-1536x865.jpeg"
-        ]
         var botEmbed = new discord.MessageEmbed()
-            .setTitle(nameArray[legendImage])
+            .setTitle(nameArray[legendImage].name)
             .setFooter(`${client.user.username} ❤️`)
-            .setImage(array[legendImage])
+            .setImage(nameArray[legendImage].url)
             .setTimestamp()
 
         interaction.update({ embeds: [botEmbed], ephemeral: true })
