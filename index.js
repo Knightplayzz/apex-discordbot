@@ -215,7 +215,7 @@ cron.schedule('* 6 1-31 * *', () => {
 
 
 
-cron.schedule('* 0,12 1-31 * *', async () => {
+cron.schedule('0 12,0 1-31 * *', async () => {
     console.log("AUTOROLE UPDATE")
     const firebase = require('firebase/app')
     const { getFirestore, collection, getDocs, query, } = require('firebase/firestore')
