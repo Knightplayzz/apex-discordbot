@@ -21,7 +21,7 @@ const db = getFirestore(app)
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('autorole-refresh')
-        .setDescription('Mannually resh your rank role.')
+        .setDescription('Manually resh your rank role.')
         //.setDefaultMemberPermissions(PermissionFlagsBits.KickMembers | PermissionFlagsBits.BanMembers)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 

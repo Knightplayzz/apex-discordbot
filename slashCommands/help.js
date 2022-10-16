@@ -28,7 +28,7 @@ module.exports = {
                 "\n``/loadout`` - Pick a random loadout to use in-game."+
                 "\n``/heirloom`` - Shows current heirlooms."+
                 "\n``/autorole`` - Gives a role with the apex rank of the user."+
-                "\n``/autorole-refresh`` - Mannually resh your rank role."+
+                "\n``/autorole-refresh`` - Manually resh your rank role."+
 
                 "\n\n:pencil: Apex Statistics:"+
                 "\n``/stats`` - Shows Apex statistics."+
