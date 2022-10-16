@@ -187,7 +187,7 @@ client.on("guildDelete", async guildDelete => {
         deleteDoc(docRef2).then(() => {
             console.log(`${guildDelete.name} REMOVED BOT. REMOVED FROM DB`)
         })
-    }else{
+    } else {
         return
     }
 })
@@ -350,75 +350,116 @@ cron.schedule('* 0,12 1-31 * *', async () => {
 
 
 
-// cron.schedule('* 6 1-31 * *', async () => {
-//     var url = `https://api.mozambiquehe.re/predator?auth=${process.env.auth}`
-//     fetch(url)
-//         .then(res => res.json())
-//         .then(async data => {
-//             const firebase = require('firebase/app')
-//             const { getFirestore, collection, doc, setDoc, getDoc } = require('firebase/firestore')
-//             const firebaseConfig = {
-//                 apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",
-//                 authDomain: "apex-discordbot.firebaseapp.com",
-//                 databaseURL: "https://apex-discordbot-default-rtdb.europe-west1.firebasedatabase.app",
-//                 projectId: "apex-discordbot",
-//                 storageBucket: "apex-discordbot.appspot.com",
-//                 messagingSenderId: "985625049043",
-//                 appId: "1:985625049043:web:0401c7b6c4ceea7e516126",
-//                 measurementId: "G-JSY0XDKC14"
-//             };
+const timers = {};
+
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isSelectMenu()) {
+        return;
+    }
+    if (interaction.customId === 'heirlooms') {
+
+        const int = interaction
+
+        if (timers[int.message]) clearTimeout(timers[int.message]);
+        timers[int.message] = setTimeout(() => {
+            int.editReply({ components: [] })
+            console.log("EXPSIRED")
+        }, 10000);
+
+        let legendImage = Number(interaction.values[0])
+        legendImage--
+
+        const nameArray = [
+            "Loba",
+            "Valkyrie",
+            "Crypto",
+            "Wattson",
+            "Rampart",
+            "Revenant",
+            "Bangalore",
+            "Gibraltar",
+            "Caustic",
+            "Mirage",
+            "Octane",
+            "Pathfinder",
+            "Lifeline",
+            "Bloodhound",
+            "Waith"
+        ]
+
+        const array = [
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/15112334/Loba-heirloom-1536x864.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133636/Valkyrie-heirloom-1536x865.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133723/Crypto-heirloom-1536x864.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133630/Wattson-heirloom-1536x865.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133644/Rampart-heirloom-1536x865.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133640/Revenant-heirloom-1536x865.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14132411/Bangalore-heirloom-1536x864.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133716/Gibraltar-heirloom-1536x864.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133729/Caustic-heirloom-1536x864.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133703/Mirage-heirloom-1536x864.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133657/Octane-heirloom-1536x865.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133651/Pathfinder-heirloom-1536x864.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133710/Lifeline-heirloom-1536x864.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133737/Bloodhound-heirloom-1536x864.jpeg",
+            "https://cdn1.dotesports.com/wp-content/uploads/2022/09/14133622/Wraith-heirloom-1536x865.jpeg"
+        ]
+        var botEmbed = new discord.MessageEmbed()
+            .setTitle(nameArray[legendImage])
+            .setFooter(`${client.user.username} ❤️`)
+            .setImage(array[legendImage])
+            .setTimestamp()
+
+        interaction.update({ embeds: [botEmbed], ephemeral: true })
+    }
+    if (interaction.customId === 'loadout') {
+         var x = interaction.values[0]
+
+        var weapons = [
+            { name: "Flatline", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/f/f1/VK-47_Flatline.png/revision/latest?cb=20220511040308" },
+            { name: "Havoc", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/e/ec/HAVOC_Rifle.png/revision/latest?cb=20220616154439" },
+            { name: "R-301", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/f/f1/R-301_Carbine.png/revision/latest?cb=20220604191827" },
+            { name: "Hemlok", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/7/74/Hemlok_Burst_AR.png/revision/latest?cb=20220617000007" },
+            { name: "Alternator", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/e/e9/Alternator_SMG.png/revision/latest?cb=20220513124637" },
+            { name: "Prowler", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/b/bf/Prowler_Burst_PDW.png/revision/latest?cb=20220829140000" },
+            { name: "R-99", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/d/d5/R-99_SMG.png/revision/latest?cb=20220829171808" },
+            { name: "Volt", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/6/60/Volt_SMG.png/revision/latest?cb=20210717062422" },
+            { name: "CAR", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/1/13/C.A.R._SMG.png/revision/latest?cb=20211104170312" },
+            { name: "Devotion", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/8/8c/Devotion_LMG.png/revision/latest?cb=20220917210303" },
+            { name: "L-STAR", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/0/01/L-STAR_EMG.png/revision/latest?cb=20220915044251" },
+            { name: "Spitfire", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/f/f2/M600_Spitfire.png/revision/latest?cb=20220919090724" },
+            { name: "G7 Scout", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/e/eb/G7_Scout.png/revision/latest?cb=20220830141535" },
+            { name: "Triple Take", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/d/d9/Triple_Take.png/revision/latest?cb=20210823030642" },
+            { name: "30-30 Repeater", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/8/86/30-30_Repeater.png/revision/latest?cb=20220911173300" },
+            { name: "Charge Rifle", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/2/2b/Charge_Rifle.png/revision/latest?cb=20221009165709" },
+            { name: "Longbow", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/4/46/Longbow_DMR.png/revision/latest?cb=20220906141950" },
+            { name: "Sentinel", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/9/91/Sentinel.png/revision/latest?cb=20220515012656" },
+            { name: "EVA-8", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/9/97/EVA-8_Auto.png/revision/latest?cb=20210817041450" },
+            { name: "Mozambique", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/a/ae/Mozambique_Shotgun.png/revision/latest?cb=20210813094328" },
+            { name: "Peacekeeper", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/6/64/Peacekeeper.png/revision/latest?cb=20210814095843" },
+            { name: "RE-45", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/2/25/RE-45_Auto.png/revision/latest?cb=20210816090119" },
+            { name: "P2020", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/c/c1/P2020.png/revision/latest?cb=20210815055000" },
+            { name: "Wingman", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/0/09/Wingman.png/revision/latest?cb=20210813090820" }
+        ]
+
+        var botEmbed = new discord.MessageEmbed()
+            .setDescription(`Use **${weapons[x].name}** this round!`)
+            .setFooter(`${client.user.username} ❤️`)
+            .setImage(weapons[x].url)
+            .setTimestamp()
+
+        interaction.update({ embeds: [botEmbed], ephemeral: true })
+
+    }
 
 
-//             const app = firebase.initializeApp(firebaseConfig);
-//             const db = getFirestore(app)
+})
 
-//             const docRef1 = collection(db, 'stats')
 
-//             const docRef2 = doc(db, 'stats', "BR")
-//             const docRef3 = doc(db, 'stats', "AP")
 
-//             const docSnap = await getDoc(docRef2)
-//             const docData = docSnap.data()
-//             const PC_DIFF = data.RP.PC.val - docData.PC
-//             const PSN_DIFF = data.RP.PS4.val - docData.PSN
-//             const XBOX_DIFF = data.RP.X1.val - docData.XBOX
-//             const SWITCH_DIFF = data.RP.SWITCH.val - docData.SWITCH
 
-//             const docSnap_AP = await getDoc(docRef3)
-//             const docData_AP = docSnap_AP.data()
-//             const PC_DIFF_AP = data.AP.PC.val - docData_AP.PC
-//             const PSN_DIFF_AP = data.AP.PS4.val - docData_AP.PSN
-//             const XBOX_DIFF_AP = data.AP.X1.val - docData_AP.XBOX
-//             const SWITCH_DIFF_AP = data.AP.SWITCH.val - docData_AP.SWITCH
 
-//             await setDoc(doc(docRef1, "BR"), {
-//                 PC: data.RP.PC.val,
-//                 PSN: data.RP.PS4.val,
-//                 XBOX: data.RP.X1.val,
-//                 SWITCH: data.RP.SWITCH.val
-//             });
-//             await setDoc(doc(docRef1, "AP"), {
-//                 PC: data.AP.PC.val,
-//                 PSN: data.AP.PS4.val,
-//                 XBOX: data.AP.X1.val,
-//                 SWITCH: data.AP.SWITCH.val
-//             });
 
-//             await setDoc(doc(docRef1, "BR_DIFF"), {
-//                 PC: PC_DIFF,
-//                 PSN: PSN_DIFF,
-//                 XBOX: XBOX_DIFF,
-//                 SWITCH: SWITCH_DIFF
-//             });
-//             await setDoc(doc(docRef1, "AP_DIFF"), {
-//                 PC: PC_DIFF_AP,
-//                 PSN: PSN_DIFF_AP,
-//                 XBOX: XBOX_DIFF_AP,
-//                 SWITCH: SWITCH_DIFF_AP
-//             });
-//             console.log("UPDATE RANK POINTS")
-//         })
-// })
 
 
 client.login(process.env.token);
