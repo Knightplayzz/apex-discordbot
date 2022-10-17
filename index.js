@@ -354,10 +354,14 @@ const timers = {};
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isSelectMenu()) {
-        if(interaction.isCommand()){
+        if (interaction.isCommand()) {
             if (interaction.commandName === 'heirloom') {
                 timers[interaction.id] = setTimeout(() => {
-                    interaction.editReply({ components: [] })
+                    var botEmbed = new discord.MessageEmbed()
+                        .setFooter(`${client.user.username} ❤️`)
+                        .setTitle("Inactive do /heirloom again!")
+                        .setTimestamp()
+                    int.editReply({ embeds: [botEmbed], components: [] })
                 }, 10000);
             }
         }
@@ -369,7 +373,11 @@ client.on('interactionCreate', async interaction => {
 
         if (timers[interaction.message.interaction.id]) clearTimeout(timers[interaction.message.interaction.id]);
         timers[interaction.message.interaction.id] = setTimeout(() => {
-            int.editReply({ components: [] })
+            var botEmbed = new discord.MessageEmbed()
+                .setFooter(`${client.user.username} ❤️`)
+                .setTitle("Inactive do /heirloom again!")
+                .setTimestamp()
+            int.editReply({ embeds: [botEmbed], components: [] })
         }, 10000);
 
         let legendImage = Number(interaction.values[0])
