@@ -38,9 +38,9 @@ module.exports = {
         let length = weapons.length
         let y = Math.floor(Math.random() * (length))
         let x = Math.floor(Math.random() * (length))
-        if(x === y){
-            if(x === 0){x++}
-            if(x === length){x--}
+        if (x === y) {
+            if (x === 0) { x++ }
+            if (x === length) { x-- }
         }
 
         let value1 = x.toString()
@@ -65,7 +65,7 @@ module.exports = {
                     .addOptions(options)
             )
 
-    
+
 
         var botEmbed = new discord.MessageEmbed()
             .setDescription(`Use **${weapons[x].name}** this round!`)

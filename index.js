@@ -354,9 +354,13 @@ const timers = {};
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isSelectMenu()) {
-        timers[interaction.id] = setTimeout(() => {
-            interaction.editReply({ components: [] })
-        }, 10000);
+        if(interaction.isCommand()){
+            if (interaction.commandName === 'heirloom') {
+                timers[interaction.id] = setTimeout(() => {
+                    interaction.editReply({ components: [] })
+                }, 10000);
+            }
+        }
         return;
     }
     if (interaction.customId === 'heirlooms') {
@@ -398,7 +402,7 @@ client.on('interactionCreate', async interaction => {
         interaction.update({ embeds: [botEmbed], ephemeral: true })
     }
     if (interaction.customId === 'loadout') {
-         var x = interaction.values[0]
+        var x = interaction.values[0]
 
         var weapons = [
             { name: "Flatline", url: "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/f/f1/VK-47_Flatline.png/revision/latest?cb=20220511040308" },

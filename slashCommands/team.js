@@ -39,13 +39,13 @@ module.exports = {
         var z = Math.floor(Math.random() * (y))
         var q = Math.floor(Math.random() * (y))
 
-        if(x === z || x === q){
-            if(x === 0){return x++}
-            if(x === y){return x--}
+        if (x === z || x === q) {
+            if (x === 0) { return x++ }
+            if (x === y) { return x-- }
             x++
         }
-        if(x === z || x === q){
-            if(x === y){return x-2}
+        if (x === z || x === q) {
+            if (x === y) { return x - 2 }
             x++
         }
 
