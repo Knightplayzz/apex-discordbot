@@ -361,8 +361,8 @@ client.on('interactionCreate', async interaction => {
                         .setFooter(`${client.user.username} ❤️`)
                         .setTitle("Inactive do /heirloom again!")
                         .setTimestamp()
-                    int.editReply({ embeds: [botEmbed], components: [] })
-                }, 10000);
+                    interaction.editReply({ embeds: [botEmbed], components: [] })
+                }, 15000);
             }
         }
         return;
@@ -373,11 +373,7 @@ client.on('interactionCreate', async interaction => {
 
         if (timers[interaction.message.interaction.id]) clearTimeout(timers[interaction.message.interaction.id]);
         timers[interaction.message.interaction.id] = setTimeout(() => {
-            var botEmbed = new discord.MessageEmbed()
-                .setFooter(`${client.user.username} ❤️`)
-                .setTitle("Inactive do /heirloom again!")
-                .setTimestamp()
-            int.editReply({ embeds: [botEmbed], components: [] })
+            int.editReply({ components: [] })
         }, 10000);
 
         let legendImage = Number(interaction.values[0])
