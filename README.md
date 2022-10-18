@@ -1,4 +1,11 @@
-Latest version v1.0.4
+Latest version v1.0.5
+- Added ``drop`` - Random place to drop.
+- Added ``distribution`` - Shows the rank distribution.
+- Update ``/help`` - Added new commands
+- Update ``index.js`` - Bug fix autorole
+- Update ``/autorole-refresh`` - Bug fix autorole
+
+v1.0.4
 - Added ``heirloom`` - Shows all heirlooms
 - Added ``loadout`` -  Random Loadout
 - Added ``invite`` - Invite the bot to your server!

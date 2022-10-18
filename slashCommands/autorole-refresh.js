@@ -75,6 +75,7 @@ module.exports = {
 
                                 let z = interaction.member
                                 if (data.global.rank.rankName === "Predator") {
+                                    if (z.roles.cache.has(roleMasters.id)) { z.roles.remove(roleMasters) }
                                     if (z.roles.cache.has(rolePred.id)) {
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`ERROR`)
@@ -84,7 +85,6 @@ module.exports = {
                                             .setColor("RED")
                                         return interaction.reply({ embeds: [botEmbed], ephemeral: true })
                                     } else {
-                                        if (z.roles.cache.has(roleMasters.id)) { z.roles.remove(roleMasters) }
                                         z.roles.add(rolePred)
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`SUCCES`)
@@ -97,6 +97,8 @@ module.exports = {
                                     }
                                 }
                                 if (data.global.rank.rankName === "Masters") {
+                                    if (z.roles.cache.has(rolePred.id)) { z.roles.remove(rolePred) }
+                                    if (z.roles.cache.has(roleDiamond.id)) { z.roles.remove(roleDiamond) }
                                     if (z.roles.cache.has(roleMasters.id)) {
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`ERROR`)
@@ -106,8 +108,6 @@ module.exports = {
                                             .setColor("RED")
                                         return interaction.reply({ embeds: [botEmbed], ephemeral: true })
                                     } else {
-                                        if (z.roles.cache.has(rolePred.id)) { z.roles.remove(rolePred) }
-                                        if (z.roles.cache.has(roleDiamond.id)) { z.roles.remove(roleDiamond) }
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`SUCCES`)
                                             .setDescription(`You now have the Masters rank!`)
@@ -119,6 +119,8 @@ module.exports = {
                                     }
                                 }
                                 if (data.global.rank.rankName === "Diamond") {
+                                    if (z.roles.cache.has(roleMasters.id)) { z.roles.remove(roleMasters) }
+                                    if (z.roles.cache.has(rolePlatinum.id)) { z.roles.remove(rolePlatinum) }
                                     if (z.roles.cache.has(roleDiamond.id)) {
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`ERROR`)
@@ -128,8 +130,6 @@ module.exports = {
                                             .setColor("RED")
                                         return interaction.reply({ embeds: [botEmbed], ephemeral: true })
                                     } else {
-                                        if (z.roles.cache.has(roleMasters.id)) { z.roles.remove(roleMasters) }
-                                        if (z.roles.cache.has(rolePlatinum.id)) { z.roles.remove(rolePlatinum) }
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`SUCCES`)
                                             .setDescription(`You now have the Diamond rank!`)
@@ -142,6 +142,8 @@ module.exports = {
                                     }
                                 }
                                 if (data.global.rank.rankName === "Platinum") {
+                                    if (z.roles.cache.has(roleDiamond.id)) { z.roles.remove(roleDiamond.id) }
+                                    if (z.roles.cache.has(roleGold.id)) { z.roles.remove(roleGold) }
                                     if (z.roles.cache.has(rolePlatinum.id)) {
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`ERROR`)
@@ -151,8 +153,6 @@ module.exports = {
                                             .setColor("RED")
                                         return interaction.reply({ embeds: [botEmbed], ephemeral: true })
                                     } else {
-                                        if (z.roles.cache.has(roleDiamond.id)) { z.roles.remove(roleDiamond.id) }
-                                        if (z.roles.cache.has(roleGold.id)) { z.roles.remove(roleGold) }
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`SUCCES`)
                                             .setDescription(`You now have the Platium rank!`)
@@ -165,6 +165,8 @@ module.exports = {
                                     }
                                 }
                                 if (data.global.rank.rankName === "Gold") {
+                                    if (z.roles.cache.has(rolePlatinum.id)) { z.roles.remove(rolePlatinum) }
+                                    if (z.roles.cache.has(roleSilver.id)) { z.roles.remove(roleSilver) }
                                     if (z.roles.cache.has(roleGold.id)) {
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`ERROR`)
@@ -174,8 +176,6 @@ module.exports = {
                                             .setColor("RED")
                                         return interaction.reply({ embeds: [botEmbed], ephemeral: true })
                                     } else {
-                                        if (z.roles.cache.has(rolePlatinum.id)) { z.roles.remove(rolePlatinum) }
-                                        if (z.roles.cache.has(roleSilver.id)) { z.roles.remove(roleSilver) }
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`SUCCES`)
                                             .setDescription(`You now have the Gold rank!`)
@@ -188,6 +188,8 @@ module.exports = {
                                     }
                                 }
                                 if (data.global.rank.rankName === "Silver") {
+                                    if (z.roles.cache.has(roleGold.id)) { z.roles.remove(roleGold) }
+                                    if (z.roles.cache.has(roleBronze.id)) { z.roles.remove(roleBronze) }
                                     if (z.roles.cache.has(roleSilver.id)) {
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`ERROR`)
@@ -197,8 +199,6 @@ module.exports = {
                                             .setColor("RED")
                                         return interaction.reply({ embeds: [botEmbed], ephemeral: true })
                                     } else {
-                                        if (z.roles.cache.has(roleGold.id)) { z.roles.remove(roleGold) }
-                                        if (z.roles.cache.has(roleBronze.id)) { z.roles.remove(roleBronze) }
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`SUCCES`)
                                             .setDescription(`You now have the Silver rank!`)
@@ -211,6 +211,7 @@ module.exports = {
                                     }
                                 }
                                 if (data.global.rank.rankName === "Bronze") {
+                                    if (z.roles.cache.has(roleSilver.id)) { z.roles.remove(roleSilver) }
                                     if (z.roles.cache.has(roleBronze.id)) {
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`ERROR`)
@@ -220,7 +221,6 @@ module.exports = {
                                             .setColor("RED")
                                         return interaction.reply({ embeds: [botEmbed], ephemeral: true })
                                     } else {
-                                        if (z.roles.cache.has(roleSilver.id)) { z.roles.remove(roleSilver) }
                                         var botEmbed = new discord.MessageEmbed()
                                             .setTitle(`SUCCES`)
                                             .setDescription(`You now have the Bronze rank!`)
