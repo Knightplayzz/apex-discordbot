@@ -192,7 +192,7 @@ client.on("guildDelete", async guildDelete => {
     }
 })
 
-cron.schedule('* 6 1-31 * *', () => {
+cron.schedule('0 6 1-31 * *', () => {
     var guildName = client.guilds.cache.find(guild => guild.id === "1018244995792257114")
     if (!guildName) { return }
     var role1 = guildName.roles.cache.find(role => role.name === "VOTE");
