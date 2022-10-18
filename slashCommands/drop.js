@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, Permissions } = require("discord.js");
 const discord = require("discord.js")
 const fetch = require('node-fetch')
-const botConfig = require('../botConfig.json')
 
 
 
