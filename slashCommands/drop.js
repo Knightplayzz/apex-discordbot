@@ -15,7 +15,7 @@ module.exports = {
                 .setRequired(false)
                 .addChoices(
                     { name: 'Storm Point', value: "Storm Point" },
-                    { name: "Wold's Edge", value: "World's Edge" },
+                    { name: "World's Edge", value: "World's Edge" },
                     { name: "Kings Canyon", value: "Kings Canyon" },
                     { name: "Olympus", value: "Olympus" },
                 )
