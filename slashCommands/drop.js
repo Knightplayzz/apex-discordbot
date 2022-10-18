@@ -22,7 +22,7 @@ module.exports = {
                 )
         ),
     async execute(client, interaction) {
-        var url = `https://api.mozambiquehe.re/maprotation?auth=${botConfig.auth}`
+        var url = `https://api.mozambiquehe.re/maprotation?auth=${process.env.auth}`
         fetch(url)
             .then(res => res.json())
             .then(async data => {
