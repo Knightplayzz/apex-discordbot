@@ -64,12 +64,11 @@ module.exports = {
                         { name: "UNKOWN DATA", url: "https://media.contentapi.ea.com/content/dam/apex-legends/common/articles/defiance-olympuas-map-update/apex-legends-screenshots-s12-map-sabotagedolympus-b-clean-min.png.adapt.crop16x9.1455w.png" }
                     ],
                     "Kings Canyon": [
-                        { name: "", url: "https://oyster.ignimgs.com/mediawiki/apis.ign.com/apex-legends/f/fb/Screenshot_%2820%29.png?width=1024" },
+                        { name: "Relic", url: "https://oyster.ignimgs.com/mediawiki/apis.ign.com/apex-legends/f/fb/Screenshot_%2820%29.png?width=1024" },
                         { name: "Containment", url: "https://i.playground.ru/p/X0CpTSovSjdSqS3tqnw2og.webp" },
                         { name: "The cage", url: "https://static1.thegamerimages.com/wordpress/wp-content/uploads/2020/03/Kings-Canyon.jpg" },
                         { name: "Crash Site", url: "https://www.gamelivestory.com/images/article/why-kings-canyon-is-the-worst-apex-legends-map-for-ranked-play-main.webp" },
-                        { name: "", url: "https://static1.thegamerimages.com/wordpress/wp-content/uploads/2020/05/Kings-Canyon-Overlooking-Salvage-in-Apex-Legends-Season-5.jpg" },
-                        { name: "", url: "https://static1.thegamerimages.com/wordpress/wp-content/uploads/2020/05/Kings-Canyon-Overlooking-Capacitor-and-Rig-in-Apex-Legends-Season-5.jpg" },
+                        { name: "Capacitor", url: "https://static1.thegamerimages.com/wordpress/wp-content/uploads/2020/05/Kings-Canyon-Overlooking-Capacitor-and-Rig-in-Apex-Legends-Season-5.jpg" },
                     ]
                 }
                 try {
