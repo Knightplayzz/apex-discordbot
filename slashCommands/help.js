@@ -26,6 +26,7 @@ module.exports = {
                 "\n\n:game_die: Fun:"+
                 "\n``/who`` - Picks a random legend to play in-game."+
                 "\n``/team`` - Pick a random team to play in-game."+
+                "\n``/drop`` - Random place to drop."+
                 "\n``/loadout`` - Pick a random loadout to use in-game."+
                 "\n``/heirloom`` - Shows current heirlooms."+
                 "\n``/autorole`` - Gives a role with the apex rank of the user."+
@@ -33,6 +34,7 @@ module.exports = {
 
                 "\n\n:pencil: Apex Statistics:"+
                 "\n``/stats`` - Shows Apex statistics."+
+                "\n``/distribution`` - Shows the rank distribution."+
                 "\n``/predator`` - Amount of points for Apex Predator."+
                 "\n``/link`` - Link your account to your Apex username."+
                 "\n``/unlink`` - Unlink your account from your Apex username."+
