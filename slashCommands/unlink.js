@@ -27,7 +27,7 @@ module.exports = {
 
     async execute(client, interaction) {
 
-        const docRef2 = doc(db, 'users', interaction.user.id)
+        const docRef2 = doc(db, 'serverUsers', interaction.guild.id, 'users', interaction.user.id)
         const docSnap = await getDoc(docRef2)
         if (docSnap.exists()) {
             const docData = docSnap.data()
