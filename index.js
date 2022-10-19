@@ -150,6 +150,33 @@ client.on('interactionCreate', async interaction => {
         }
     }
 })
+client.on("guildMemberRemove", async member => {
+    const firebase = require('firebase/app')
+    const { getFirestore, collection, doc, setDoc, getDoc, deleteDoc } = require('firebase/firestore')
+    const firebaseConfig = {
+        apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",
+        authDomain: "apex-discordbot.firebaseapp.com",
+        databaseURL: "https://apex-discordbot-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "apex-discordbot",
+        storageBucket: "apex-discordbot.appspot.com",
+        messagingSenderId: "985625049043",
+        appId: "1:985625049043:web:0401c7b6c4ceea7e516126",
+        measurementId: "G-JSY0XDKC14"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = getFirestore(app)
+
+    const docRef3 = doc(db, 'serverUsers', member.guild.id, 'users', member.user.id)
+    const docSnap2 = await getDoc(docRef3)
+
+    if (docSnap2.exists()) {
+        deleteDoc(docRef3).then(() => {
+            console.log(`${member.user.username} left ${member.guild.name}.\n we removed him form the db`)
+        })
+    } 
+}); 
 client.on("guildCreate", () => {
     let guild = client.guilds.cache.get("1018244995792257114");
     let channel = guild.channels.cache.get("1024393334007009391")
