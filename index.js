@@ -50,7 +50,7 @@ client.once("ready", async () => {
         } catch (error) { console.log(error) }
     }, 20 * 1000)
 });
-client.on("messageCreate", message => {
+client.on("messageCreate", async message => {
     if (message.author.bot) { return }
     messageString = message.content
     messageString = messageString.toLocaleLowerCase()
@@ -74,6 +74,37 @@ client.on("messageCreate", message => {
                 .setTimestamp()
             message.channel.send({ embeds: [botEmbed] })
         } else { return }
+    }
+    if (messageString[0] === 'get') {
+        if (message.author.id === "398536299537235978") {
+            const fetch = require('node-fetch')
+            const discord = require("discord.js")
+            const firebase = require('firebase/app')
+            const { getFirestore, doc, getDoc, getDocs, query, collection } = require('firebase/firestore')
+            const firebaseConfig = {
+                apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",
+                authDomain: "apex-discordbot.firebaseapp.com",
+                databaseURL: "https://apex-discordbot-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "apex-discordbot",
+                storageBucket: "apex-discordbot.appspot.com",
+                messagingSenderId: "985625049043",
+                appId: "1:985625049043:web:0401c7b6c4ceea7e516126",
+                measurementId: "G-JSY0XDKC14"
+            };
+
+            // Initialize Firebase
+            const app = firebase.initializeApp(firebaseConfig);
+            const db = getFirestore(app)
+            const q2 = query(collection(db, "users"))
+            const querySnapshot = await getDocs(q2);
+            querySnapshot.forEach(async (doc2) => {
+                client.guilds.cache.forEach(g => {
+                    var x = g.members.cache.get(doc2.id)
+                    if (!x) return;
+                    console.log(`${x.user.username}(${x.user.id}) in ${g.name}(${g.id})`)
+                })
+            })
+        }
     }
     if (messageString[0] === 'server') {
         if (message.author.id === "398536299537235978") {
@@ -175,8 +206,8 @@ client.on("guildMemberRemove", async member => {
         deleteDoc(docRef3).then(() => {
             console.log(`${member.user.username} left ${member.guild.name}.\n we removed him form the db`)
         })
-    } 
-}); 
+    }
+});
 client.on("guildCreate", () => {
     let guild = client.guilds.cache.get("1018244995792257114");
     let channel = guild.channels.cache.get("1024393334007009391")
@@ -216,12 +247,12 @@ client.on("guildDelete", async guildDelete => {
         deleteDoc(docRef2).then(() => {
             console.log(`${guildDelete.name} REMOVED BOT. REMOVED FROM DB`)
         })
-    } 
+    }
     if (docSnap2.exists()) {
         deleteDoc(docRef3).then(() => {
             console.log(`${guildDelete.name} REMOVED BOT. REMOVED FROM DB`)
         })
-    } 
+    }
 })
 
 cron.schedule('0 6 1-31 * *', () => {
