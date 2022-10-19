@@ -60,7 +60,7 @@ module.exports = {
                     console.log("Can't acces role in guild" + x.name)
                     return interaction.reply({ content: "The Apex Bot role must be higher that the ranked roles!" })
                 } else {
-                    const docRef2 = doc(db, 'users', interaction.user.id)
+                    const docRef2 = doc(db, 'serverUsers', x.id, 'users', interaction.user.id)
                     const docSnap = await getDoc(docRef2)
 
                     if (docSnap.exists()) {

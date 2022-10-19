@@ -182,14 +182,19 @@ client.on("guildDelete", async guildDelete => {
 
     const docRef2 = doc(db, 'servers', guildDelete.id)
     const docSnap = await getDoc(docRef2)
+    const docRef3 = doc(db, 'serverUsers', guildDelete.id)
+    const docSnap2 = await getDoc(docRef3)
 
     if (docSnap.exists()) {
         deleteDoc(docRef2).then(() => {
             console.log(`${guildDelete.name} REMOVED BOT. REMOVED FROM DB`)
         })
-    } else {
-        return
-    }
+    } 
+    if (docSnap2.exists()) {
+        deleteDoc(docRef3).then(() => {
+            console.log(`${guildDelete.name} REMOVED BOT. REMOVED FROM DB`)
+        })
+    } 
 })
 
 cron.schedule('0 6 1-31 * *', () => {
@@ -236,10 +241,9 @@ cron.schedule('0 12,0 1-31 * *', async () => {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (fG) => {
         var data2 = fG.data()
-        if (data2.on === false) { return } else {
+        if (data2.on === true) {
             let x = client.guilds.cache.get(fG.id)
             if (!x) { return console.log("NO GUILD FOUND -1") } else {
-                //console.log(x.name)
                 if (!x.me.permissions.has("ADMINISTRATOR")) { return } else {
                     var rolePred = x.roles.cache.find(role => role.name === "Predator");
                     var roleMasters = x.roles.cache.find(role => role.name === "Masters");
@@ -265,12 +269,12 @@ cron.schedule('0 12,0 1-31 * *', async () => {
                     var roleSilver = x.roles.cache.find(role => role.name === "Silver");
                     var roleBronze = x.roles.cache.find(role => role.name === "Bronze");
 
-                    var clientPos = x.roles.cache.find(role => role.name === "Apex")
+                    var clientPos = x.roles.cache.find(role => role.name === client.user.username)
                     if (clientPos.position < rolePred.position || clientPos.position < roleMasters.position || clientPos.position < roleDiamond.position || clientPos.position < rolePlatinum.position || clientPos.position < roleGold.position || clientPos.position < roleSilver.position || clientPos.position < roleBronze.position) { return console.log("Can't acces role in guild" + x.name) } else {
-
-                        const q2 = query(collection(db, "users"))
+                        const q2 = query(collection(db, "serverUsers", x.id, "users"))
                         const querySnapshot = await getDocs(q2);
                         querySnapshot.forEach(async (doc2) => {
+
                             let data = doc2.data()
                             let z = x.members.cache.get(doc2.id)
                             if (!z) { return }
@@ -321,7 +325,8 @@ cron.schedule('0 12,0 1-31 * *', async () => {
                 }
             }
         }
-    });
+    })
+
 })
 
 

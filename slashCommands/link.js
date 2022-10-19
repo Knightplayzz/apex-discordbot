@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 const fetch = require('node-fetch')
 const discord = require("discord.js")
 const firebase = require('firebase/app')
-const { getFirestore, collection, doc, setDoc, getDoc } = require('firebase/firestore')
+const { getFirestore, collection, doc, setDoc, getDocs, query, getDoc } = require('firebase/firestore')
 const firebaseConfig = {
     apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",
     authDomain: "apex-discordbot.firebaseapp.com",
@@ -61,22 +61,23 @@ module.exports = {
 
         const player = interaction.options.getString('username')
 
-        const docRef2 = doc(db, 'users', interaction.user.id)
+        const docRef2 = doc(db, 'serverUsers', interaction.guild.id, 'users', interaction.user.id)
+
         const docSnap = await getDoc(docRef2)
         if (docSnap.exists()) {
-            const docData = docSnap.data()
-
+            const data = docSnap.data()
             var botEmbed = new discord.MessageEmbed()
                 .setTitle(`ERROR`)
                 .setDescription(
                     `You are already linked to:` +
-                    `\n**${docData.username}** [${docData.platform}]`)
+                    `\n**${data.username}** [${data.platform}]`)
                 .setFooter(`${client.user.username} ❤️`)
                 .setTimestamp()
                 .setColor("RED")
 
-            interaction.reply({ embeds: [botEmbed], ephemeral: true })
+            return interaction.reply({ embeds: [botEmbed], ephemeral: true })
         } else {
+
             var url = `https://api.mozambiquehe.re/bridge?version=5&platform=${platform}&player=${player}&auth=${process.env.auth}`
             url.replace(/ /g, '')
             try {
@@ -103,8 +104,8 @@ module.exports = {
                                 return
                             }
                         } catch (error) { console.log(error) }
-
-                        const citiesRef = collection(db, "users");
+                        //const citiesRef = collection(db, "users");
+                        const citiesRef = collection(db, 'serverUsers', interaction.guild.id, 'users')
 
                         await setDoc(doc(citiesRef, interaction.user.id), {
                             platform: platform,
@@ -124,6 +125,7 @@ module.exports = {
                     })
             } catch (error) { console.log(error) }
         }
+
 
     }
 }
