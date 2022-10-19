@@ -80,7 +80,7 @@ client.on("messageCreate", async message => {
             const fetch = require('node-fetch')
             const discord = require("discord.js")
             const firebase = require('firebase/app')
-            const { getFirestore, doc, getDoc, getDocs, query, collection } = require('firebase/firestore')
+            const { getFirestore, doc, setDoc, getDocs, query, collection, getDoc } = require('firebase/firestore')
             const firebaseConfig = {
                 apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",
                 authDomain: "apex-discordbot.firebaseapp.com",
@@ -98,10 +98,17 @@ client.on("messageCreate", async message => {
             const q2 = query(collection(db, "users"))
             const querySnapshot = await getDocs(q2);
             querySnapshot.forEach(async (doc2) => {
-                client.guilds.cache.forEach(g => {
+                let data2 = doc2.data()
+                client.guilds.cache.forEach(async g => {
                     var x = g.members.cache.get(doc2.id)
                     if (!x) return;
-                    console.log(`${x.user.username}(${x.user.id}) in ${g.name}(${g.id})`)
+                    //console.log(`${x.user.username}(${x.user.id}) in ${g.name}(${g.id})`)
+                    const citiesRef = collection(db, 'serverUsers', g.id, 'users')
+
+                        await setDoc(doc(citiesRef, x.user.id), {
+                            platform: data2.platform,
+                            username: data2.username
+                        });
                 })
             })
         }
