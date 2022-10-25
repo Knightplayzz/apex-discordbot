@@ -1,6 +1,6 @@
 Latest version v1.0.7
-- Edit ``all commands`` now logs every command.
-- This is for improvents. To know what commands are being used.
+- Edit ``all commands`` - Now logs every command.
+- This is for improvements. To know what commands are being used.
 - Personal data is not stored.
 
 
