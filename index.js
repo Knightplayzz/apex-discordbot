@@ -458,7 +458,6 @@ client.on('interactionCreate', async interaction => {
             .setFooter(`${client.user.username} ❤️`)
             .setImage(nameArray[legendImage].url)
             .setTimestamp()
-
         interaction.update({ embeds: [botEmbed], ephemeral: true })
     }
     if (interaction.customId === 'loadout') {
