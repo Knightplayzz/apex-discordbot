@@ -9,6 +9,12 @@ module.exports = {
         .setDescription('Vote to receive a reward!'),
 
     async execute(client, interaction) {
+        try{
+            //log
+            const logServ = client.guilds.cache.get('1018244995792257114')
+            const logChan = logServ.channels.cache.find(channel => channel.name === "log")
+            logChan.send({ content: "``/vote`` - " + interaction.user.username + "#" + interaction.user.discriminator })
+        }catch{console.log('logchan not found')}
 
         try {
             var url = `https://top.gg/api/bots/1014207340188270673/check?userId=${interaction.user.id}`

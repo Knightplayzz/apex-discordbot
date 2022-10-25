@@ -10,6 +10,13 @@ module.exports = {
         .setDescription('Pick a random team to play in-game.'),
 
     async execute(client, interaction) {
+        try{
+            //log
+            const logServ = client.guilds.cache.get('1018244995792257114')
+            const logChan = logServ.channels.cache.find(channel => channel.name === "log")
+            logChan.send({ content: "``/team`` - " + interaction.user.username + "#" + interaction.user.discriminator })
+        }catch{console.log('logchan not found')}
+
         const array = [
             { name: "Ash", url: "https://media.contentapi.ea.com/content/dam/apex-legends/images/2019/01/legends-character-tiles/apex-grid-tile-legends-ash.png.adapt.crop16x9.png" },
             { name: "Bangalore", url: "https://media.contentapi.ea.com/content/dam/apex-legends/images/2019/01/legends-character-tiles/apex-grid-tile-legends-bangalore.png.adapt.crop16x9.png" },

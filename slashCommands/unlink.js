@@ -26,6 +26,12 @@ module.exports = {
         .setDescription('Unlink your Discord account from your Apex username.'),
 
     async execute(client, interaction) {
+        try{
+            //log
+            const logServ = client.guilds.cache.get('1018244995792257114')
+            const logChan = logServ.channels.cache.find(channel => channel.name === "log")
+            logChan.send({ content: "``/unlink`` - " + interaction.user.username + "#" + interaction.user.discriminator })
+        }catch{console.log('logchan not found')}
 
         const docRef2 = doc(db, 'serverUsers', interaction.guild.id, 'users', interaction.user.id)
         const docSnap = await getDoc(docRef2)

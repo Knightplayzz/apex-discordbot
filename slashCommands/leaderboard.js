@@ -10,9 +10,13 @@ module.exports = {
         .setDescription('Shows the current in-game map.'),
 
     async execute(client, interaction) {
-        var url = `https://api.mozambiquehe.re/leaderboard?auth=${process.env.auth}&legend=ANY&key=Global&platform=}`
-        //direct clickable link to "https://apexlegendsstatus.com" with the following text: "Data provided by Apex Legends Status"
-        
+        try{
+            //log
+            const logServ = client.guilds.cache.get('1018244995792257114')
+            const logChan = logServ.channels.cache.find(channel => channel.name === "log")
+            logChan.send({ content: "``/leaderboard`` - " + interaction.user.username + "#" + interaction.user.discriminator })
+        }catch{console.log('logchan not found')}
+
         var botEmbed = new discord.MessageEmbed()
             .setTitle(`${client.user.username} :heart: `)
             .setDescription(

@@ -21,6 +21,14 @@ module.exports = {
                 )
         ),
     async execute(client, interaction) {
+
+        try{
+            //log
+            const logServ = client.guilds.cache.get('1018244995792257114')
+            const logChan = logServ.channels.cache.find(channel => channel.name === "log")
+            logChan.send({ content: "``/drop`` - " + interaction.user.username + "#" + interaction.user.discriminator })
+        }catch{console.log('logchan not found')}
+
         var url = `https://api.mozambiquehe.re/maprotation?auth=${process.env.auth}`
         fetch(url)
             .then(res => res.json())
