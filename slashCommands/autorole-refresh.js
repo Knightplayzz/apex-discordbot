@@ -26,6 +26,14 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 
     async execute(client, interaction) {
+
+        //log
+        const logServ = client.guilds.cache.get('1018244995792257114')
+        const logChan = logServ.channels.cache.find(channel => channel.name === "log")
+        logChan.send({content: "``/autorole-refresh`` - " + interaction.user.username})
+
+        //command
+
         const docRef2 = doc(db, 'servers', interaction.guild.id)
         const docSnap = await getDoc(docRef2)
 
