@@ -1,4 +1,17 @@
-Latest version v1.0.5
+Latest version v1.0.7
+- Edit ``all commands`` now logs every command.
+- This is for improvents. To know what commands are being used.
+- Personal data is not stored.
+
+
+v1.0.6
+- Update ``/me`` - Changed database. Faster response.
+- Update ``/link`` - Changed database. Faster response.
+- Update ``/autorole-refresh`` - Changed database. Faster response.
+- Update ``/unlink`` - Changed database. Faster response.
+- Bug Fix - removed typographical errors.
+
+v1.0.5
 - Added ``drop`` - Random place to drop.
 - Added ``distribution`` - Shows the rank distribution.
 - Update ``/help`` - Added new commands
