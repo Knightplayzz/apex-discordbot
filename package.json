@@ -4,7 +4,6 @@
   "description": "Test V13",
   "main": "index.js",
   "scripts": {
-    "test": "index.js",
     "start": "nodemon"
   },
   "author": "Philippe Smeets",
