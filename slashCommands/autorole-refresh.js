@@ -8,6 +8,7 @@ const { getFirestore, collection, getDoc, query, doc } = require('firebase/fires
 const firebaseConfig = {
     //Sectet
 };
+//secret
 const app = firebase.initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
