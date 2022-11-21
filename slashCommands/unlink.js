@@ -7,6 +7,7 @@ const { getFirestore, collection, doc, getDoc, deleteDoc } = require('firebase/f
 const firebaseConfig = {
     //secret
 };
+//secret
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
