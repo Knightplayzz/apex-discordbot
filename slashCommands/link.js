@@ -5,14 +5,7 @@ const discord = require("discord.js")
 const firebase = require('firebase/app')
 const { getFirestore, collection, doc, setDoc, getDocs, query, getDoc } = require('firebase/firestore')
 const firebaseConfig = {
-    apiKey: "AIzaSyBJ12J-Q0HGEH115drMeCRKsPd_kt-Z68A",
-    authDomain: "apex-discordbot.firebaseapp.com",
-    databaseURL: "https://apex-discordbot-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "apex-discordbot",
-    storageBucket: "apex-discordbot.appspot.com",
-    messagingSenderId: "985625049043",
-    appId: "1:985625049043:web:0401c7b6c4ceea7e516126",
-    measurementId: "G-JSY0XDKC14"
+   //secret
 };
 
 // Initialize Firebase
