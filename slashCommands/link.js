@@ -7,6 +7,7 @@ const { getFirestore, collection, doc, setDoc, getDocs, query, getDoc } = requir
 const firebaseConfig = {
    //secret
 };
+//secret
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
